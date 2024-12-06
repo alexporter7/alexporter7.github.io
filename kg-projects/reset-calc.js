@@ -20,7 +20,7 @@ function generateNonCraftableResourceTable() {
             </thead>
             <tbody>          
     `;
-    NON_CRAFTABLE_RESOURCES.forEach( (resource) => resourceTable.concat("<tr><td>", resource, "</td><td>", 0, "</td></tr>") );
+    NON_CRAFTABLE_RESOURCES.forEach( (resource) => resourceTable += "<tr><td>" + resource + "</td><td>" + 0 + "</td></tr>" );
     resourceTable.concat("</tbody></table>");
     return resourceTable;
 }
@@ -36,7 +36,7 @@ function generateCraftableResourceTable() {
             </thead>
             <tbody>          
     `;
-    CRAFTABLE_RESOURCES.forEach( (resource) => resourceTable.concat("<tr><td>", resource, "</td><td>", 0, "</td></tr>") );
+    CRAFTABLE_RESOURCES.forEach( (resource) => resourceTable += "<tr><td>" + resource + "</td><td>" + 0 + "</td></tr>" );
     resourceTable.concat("</tbody></table>");
     return resourceTable;
 }
