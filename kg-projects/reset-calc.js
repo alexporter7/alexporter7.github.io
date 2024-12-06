@@ -21,7 +21,7 @@ function generateNonCraftableResourceTable() {
             <tbody>          
     `;
     NON_CRAFTABLE_RESOURCES.forEach( (resource) => resourceTable += "<tr><td>" + resource + "</td><td>" + 0 + "</td></tr>" );
-    resourceTable.concat("</tbody></table>");
+    resourceTable += "</tbody></table>";
     return resourceTable;
 }
 
@@ -37,6 +37,6 @@ function generateCraftableResourceTable() {
             <tbody>          
     `;
     CRAFTABLE_RESOURCES.forEach( (resource) => resourceTable += "<tr><td>" + resource + "</td><td>" + 0 + "</td></tr>" );
-    resourceTable.concat("</tbody></table>");
+    resourceTable += "</tbody></table>";
     return resourceTable;
 }
