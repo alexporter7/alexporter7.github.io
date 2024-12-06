@@ -9,7 +9,7 @@ const CRAFTABLE_RESOURCES = ["wood", "beam", "slab", "plate", "steel", "concrete
     "parchment", "manuscript", "compendium", "blueprint", "thorium", "megalith"
 ]
 
-function generateResourceTable(resources) {
+function generateNonCraftableResourceTable() {
     let resourceTable = `
         <table class="table">
             <thead>
@@ -20,7 +20,23 @@ function generateResourceTable(resources) {
             </thead>
             <tbody>          
     `;
-    resources.forEach( (resource) => resourceTable.concat("<tr><td>", resource, "</td><td>", 0, "</td></tr>") );
+    NON_CRAFTABLE_RESOURCES.forEach( (resource) => resourceTable.concat("<tr><td>", resource, "</td><td>", 0, "</td></tr>") );
+    resourceTable.concat("</tbody></table>");
+    return resourceTable;
+}
+
+function generateCraftableResourceTable() {
+    let resourceTable = `
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Resource</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>          
+    `;
+    NON_CRAFTABLE_RESOURCES.forEach( (resource) => resourceTable.concat("<tr><td>", resource, "</td><td>", 0, "</td></tr>") );
     resourceTable.concat("</tbody></table>");
     return resourceTable;
 }
