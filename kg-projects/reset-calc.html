@@ -13,7 +13,8 @@
       </div>
       <div class="row">
         <h4>Non-Craftable Resources</h4>
-        <script>generateResourceTable(NON_CRAFTABLE_RESOURCES)</script>
+        <div id="non-craftable-resource-table"></div>
+        <script>document.getElementById("non-craftable-resource-table").innerHTML = generateResourceTable(NON_CRAFTABLE_RESOURCES)</script>
       </div>
     </div>
   </body>
