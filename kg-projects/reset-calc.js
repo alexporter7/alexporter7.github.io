@@ -52,7 +52,7 @@ let data = {
             void: {color: "purple", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
         }
     },
-    buildings: {
+    currentBuildings: {
         chronosphere: {amount: 4}
     }
 }
@@ -86,7 +86,7 @@ function updateNeededAmount(resourceType, resource) {
 function getcarryOverAmount(resource) {
     switch(resource.carryOverType) {
         case "non-craftable":
-            return resource.amount * 0.15 * data.buildings.chronosphere.amount;
+            return resource.amount * 0.15 * data.currentBuildings.chronosphere.amount;
         case "craftable":
             return 0;
         case "none":
@@ -175,4 +175,38 @@ function generateCraftableResourceTable() {
     );
     resourceTable += "</tbody></table>";
     return resourceTable;
+}
+
+function generateTechList(techList) {
+    // let totalTechs = Object.keys(techList).length;
+    // let totalColumns = 4;
+    // let techListColumns = [];
+    // let itemsPerColumn = totalTechs/totalColumns;
+
+    // for(let i = 0; i < itemsPerColumn; i++) {
+    //     let techListColumn = `<div class="col-3>`;
+    //     Object.keys(Object.fromEntries(Object.entries(techList).slice(i * itemsPerColumn, Math.min((i + 1) * itemsPerColumn, totalTechs)))).forEach(
+    //         (tech) => {
+    //             techListColumn += 
+    //             `<input class="form-check-input" type="checkbox" value="" id=${tech}>
+    //             <label class="form-check-label" for="${tech}">${tech}</label><br>`
+    //         }
+    //     );
+    //     techListColumn += "</div>";
+    //     techListColumns.push(techListColumn);
+    // }
+
+    let techListHtml = "";
+    //techListColumns.forEach((column) => techListHtml += column);
+    Object.keys(techList).forEach(
+        (tech) => {
+            let costString = "Cost: ";
+            techList[tech].cost.forEach((techCost) => costString += `${techCost.resource}: ${techCost.val} / `)
+            costString = costString.slice(0, -2);
+            techListHtml += 
+                `<input class="form-check-input" type="checkbox" value="" id=${tech}>
+                <label class="form-check-label" for="${tech}">${tech} | ${costString}</label><br>`
+        }
+    );
+    return techListHtml;
 }
