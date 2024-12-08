@@ -73,15 +73,9 @@ function parseSaveImport() {
 /*
  * Data Manipulation
  */
-function updateNeededAmount() {
-    // Object.keys(data.resources).forEach(
-    //     (resourceType) => {
-    //         Object.keys(data.resources[resourceType]).forEach(
-    //             (resource) => data.resources[resourceType][resource].needed = document.getElementById(`${resource}-needed`).value
-    //         )
-    //     }
-    // );
-    data.resources.nonCraftable.catnip.needed = document.getElementById(`catnip-needed`).value
+function updateNeededAmount(resourceType, resource) {
+    data.resources[resourceType][resource].needed = Number(document.getElementById(`${resource}-needed`).value)
+    document.getElementById('non-craft').innerHTML = `Value: ${document.getElementById(`${resource}-needed`).value} | Data: `
     rebuildTables();
 }
 
@@ -136,7 +130,7 @@ function generateNonCraftableResourceTable() {
                 info: data.resources.nonCraftable[resource],
                 carryOver: getcarryOverAmount(data.resources.nonCraftable[resource]),
             };
-            resourceObject.delta = calculateDelta({carryOver: resourceObject.carryOver, needed: 0})
+            resourceObject.delta = calculateDelta({carryOver: resourceObject.carryOver, needed: resourceObject.info.needed})
             resourceTable += `<tr>
                                 <td style="color:${resourceObject.info.color}">${resource}</td>
                                 <td class="text-center">${resourceObject.info.amount}</td>
@@ -146,8 +140,8 @@ function generateNonCraftableResourceTable() {
                                         id="${resource}-needed"
                                         type="text" 
                                         class="form-control form-control-sm" 
-                                        placeholder="${resourceObject.info.needed}"
-                                        onchange="updateNeededAmount()">
+                                        value="${resourceObject.info.needed}"
+                                        onchange="updateNeededAmount('nonCraftable', ${resource})">
                                 </td>
                                 <td class="text-center" style="color:${getDeltaColor(resourceObject.delta)}">${resourceObject.delta}</td>
                             </tr>`
