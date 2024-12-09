@@ -202,3 +202,15 @@ function generateTechList(techList) {
     );
     return techListHtml;
 }
+
+function generateUpgradeList(upgradeList) {
+    let upgradeListHtml = "";
+    Object.keys(upgradeList).forEach(
+        (upgrade) => {
+            upgradeListHtml += 
+                `<input class="form-check-input" type="checkbox" value="" id=${upgrade}>
+                <label class="form-check-label" for="${upgrade}">${upgrade} | ${getCostString(upgradeList[upgrade].cost)}</label><br>`
+        }
+    );
+    return upgradeListHtml;
+}

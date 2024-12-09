@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-3">
           <div class="row">
             <h4 id="non-craft">Non-Craftable Resources</h4>
             <div id="non-craftable-resource-table"></div>
@@ -37,8 +37,10 @@
           <div id="tech-list-checkbox"></div>
           <script>document.getElementById("tech-list-checkbox").innerHTML = generateTechList(techList)</script>
         </div>
-        <div class="col-4">
+        <div class="col-5">
           <h4>Upgrades</h4>
+          <div id="upgrade-list-checkbox"></div>
+          <script>document.getElementById("upgrade-list-checkbox").innerHTML = generateUpgradeList(upgrades)</script>
         </div>
       </div>
     </div>

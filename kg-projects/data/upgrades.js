@@ -3,11 +3,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "minerals",
+          resource: "minerals",
           val: 275
         },
         {
-          name: "science",
+          resource: "science",
           val: 100
         }
       ],
@@ -21,11 +21,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "iron",
+          resource: "iron",
           val: 25
         },
         {
-          name: "science",
+          resource: "science",
           val: 200
         }
       ]
@@ -34,11 +34,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "minerals",
+          resource: "minerals",
           val: 500
         },
         {
-          name: "science",
+          resource: "science",
           val: 100
         }
       ],
@@ -52,11 +52,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "iron",
+          resource: "iron",
           val: 50
         },
         {
-          name: "science",
+          resource: "science",
           val: 200
         }
       ]
@@ -65,11 +65,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 20000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 75
         }
       ]
@@ -78,11 +78,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "iron",
+          resource: "iron",
           val: 1000
         },
         {
-          name: "science",
+          resource: "science",
           val: 2500
         }
       ]
@@ -91,11 +91,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 52000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 750
         }
       ],
@@ -109,11 +109,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 500
         },
         {
-          name: "science",
+          resource: "science",
           val: 70000
         }
       ],
@@ -127,11 +127,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 85000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 75
         }
       ]
@@ -140,11 +140,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 10
         },
         {
-          name: "science",
+          resource: "science",
           val: 38000
         }
       ]
@@ -153,11 +153,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 70000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 25
         }
       ]
@@ -166,11 +166,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 75
         },
         {
-          name: "science",
+          resource: "science",
           val: 125000
         }
       ]
@@ -179,11 +179,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 125
         },
         {
-          name: "science",
+          resource: "science",
           val: 145000
         }
       ]
@@ -192,19 +192,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "wood",
+          resource: "wood",
           val: 1000
         },
         {
-          name: "minerals",
+          resource: "minerals",
           val: 750
         },
         {
-          name: "iron",
+          resource: "iron",
           val: 50
         },
         {
-          name: "science",
+          resource: "science",
           val: 500
         }
       ]
@@ -213,19 +213,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "iron",
+          resource: "iron",
           val: 100
         },
         {
-          name: "science",
+          resource: "science",
           val: 800
         },
         {
-          name: "beam",
+          resource: "beam",
           val: 25
         },
         {
-          name: "slab",
+          resource: "slab",
           val: 10
         }
       ],
@@ -239,19 +239,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 15000
         },
         {
-          name: "plate",
+          resource: "plate",
           val: 50
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 50
         },
         {
-          name: "scaffold",
+          resource: "scaffold",
           val: 25
         }
       ],
@@ -265,19 +265,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 25
         },
         {
-          name: "science",
+          resource: "science",
           val: 60000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 200
         },
         {
-          name: "scaffold",
+          resource: "scaffold",
           val: 250
         }
       ]
@@ -286,15 +286,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 75000
         },
         {
-          name: "plate",
+          resource: "plate",
           val: 750
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 20
         }
       ]
@@ -303,15 +303,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 2000
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "concrate",
+          resource: "concrate",
           val: 45
         }
       ]
@@ -320,19 +320,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 50
         },
         {
-          name: "science",
+          resource: "science",
           val: 70000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 500
         },
         {
-          name: "scaffold",
+          resource: "scaffold",
           val: 500
         }
       ]
@@ -341,15 +341,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 750
         },
         {
-          name: "science",
+          resource: "science",
           val: 90000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 50
         }
       ]
@@ -358,15 +358,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1250
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "concrate",
+          resource: "concrate",
           val: 35
         }
       ]
@@ -375,15 +375,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 500
         },
         {
-          name: "science",
+          resource: "science",
           val: 25000
         },
         {
-          name: "concrate",
+          resource: "concrate",
           val: 1250
         }
       ]
@@ -392,15 +392,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 7500
         },
         {
-          name: "uranium",
+          resource: "uranium",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 200000
         }
       ]
@@ -409,19 +409,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "uranium",
+          resource: "uranium",
           val: 2000
         },
         {
-          name: "science",
+          resource: "science",
           val: 235000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 1
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 200
         }
       ],
@@ -435,19 +435,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "uranium",
+          resource: "uranium",
           val: 2500
         },
         {
-          name: "science",
+          resource: "science",
           val: 275000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 2
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 250
         }
       ],
@@ -461,15 +461,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 350000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 3
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 75
         }
       ]
@@ -478,15 +478,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 500000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 10
         },
         {
-          name: "relic",
+          resource: "relic",
           val: 5
         }
       ]
@@ -495,15 +495,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 500000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 10
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 125
         }
       ]
@@ -512,15 +512,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 5000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 5
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 250
         }
       ]
@@ -529,15 +529,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 100
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 150
         }
       ]
@@ -546,11 +546,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 5000
         },
         {
-          name: "science",
+          resource: "science",
           val: 75000
         }
       ]
@@ -559,15 +559,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "uranium",
+          resource: "uranium",
           val: 1000
         },
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 200
         },
         {
-          name: "science",
+          resource: "science",
           val: 125000
         }
       ]
@@ -576,15 +576,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 175000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 200
         },
         {
-          name: "thorium",
+          resource: "thorium",
           val: 1000
         }
       ]
@@ -593,11 +593,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 225000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 750
         }
       ]
@@ -606,11 +606,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 55000
         },
         {
-          name: "blueprint",
+          resource: "blueprint",
           val: 15
         }
       ]
@@ -619,15 +619,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1500
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "blueprint",
+          resource: "blueprint",
           val: 30
         }
       ]
@@ -636,15 +636,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 5000
         },
         {
-          name: "uranium",
+          resource: "uranium",
           val: 125
         },
         {
-          name: "science",
+          resource: "science",
           val: 135000
         }
       ]
@@ -653,15 +653,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "wood",
+          resource: "wood",
           val: 15000
         },
         {
-          name: "iron",
+          resource: "iron",
           val: 3000
         },
         {
-          name: "science",
+          resource: "science",
           val: 30000
         }
       ],
@@ -675,15 +675,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 3000
         },
         {
-          name: "science",
+          resource: "science",
           val: 125000
         },
         {
-          name: "concrate",
+          resource: "concrate",
           val: 45
         }
       ]
@@ -692,15 +692,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 15000
         },
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 350
         },
         {
-          name: "science",
+          resource: "science",
           val: 200000
         }
       ]
@@ -709,11 +709,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 275000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 125
         }
       ]
@@ -722,15 +722,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 50000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 125
         },
         {
-          name: "blueprint",
+          resource: "blueprint",
           val: 5
         }
       ],
@@ -744,15 +744,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 2500
         },
         {
-          name: "science",
+          resource: "science",
           val: 125000
         },
         {
-          name: "blueprint",
+          resource: "blueprint",
           val: 15
         }
       ]
@@ -761,15 +761,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "wood",
+          resource: "wood",
           val: 200
         },
         {
-          name: "iron",
+          resource: "iron",
           val: 100
         },
         {
-          name: "science",
+          resource: "science",
           val: 500
         }
       ]
@@ -778,11 +778,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "iron",
+          resource: "iron",
           val: 1500
         },
         {
-          name: "science",
+          resource: "science",
           val: 12000
         }
       ]
@@ -791,15 +791,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 5000
         },
         {
-          name: "science",
+          resource: "science",
           val: 150000
         },
         {
-          name: "blueprint",
+          resource: "blueprint",
           val: 25
         }
       ]
@@ -808,15 +808,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "wood",
+          resource: "wood",
           val: 50
         },
         {
-          name: "minerals",
+          resource: "minerals",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 1000
         }
       ]
@@ -825,11 +825,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "iron",
+          resource: "iron",
           val: 750
         },
         {
-          name: "science",
+          resource: "science",
           val: 2000
         }
       ]
@@ -838,11 +838,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 10000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 50
         }
       ]
@@ -851,11 +851,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 50000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 25
         }
       ]
@@ -864,11 +864,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 185000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 250
         }
       ]
@@ -877,15 +877,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "gold",
+          resource: "gold",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 25000
         },
         {
-          name: "ivory",
+          resource: "ivory",
           val: 10000
         }
       ]
@@ -894,11 +894,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "catnip",
+          resource: "catnip",
           val: 5000
         },
         {
-          name: "science",
+          resource: "science",
           val: 500
         }
       ]
@@ -907,15 +907,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "minerals",
+          resource: "minerals",
           val: 800
         },
         {
-          name: "iron",
+          resource: "iron",
           val: 100
         },
         {
-          name: "science",
+          resource: "science",
           val: 1000
         }
       ]
@@ -924,15 +924,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 90000
         },
         {
-          name: "starchart",
+          resource: "starchart",
           val: 500
         }
       ]
@@ -941,11 +941,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "gold",
+          resource: "gold",
           val: 10
         },
         {
-          name: "science",
+          resource: "science",
           val: 500
         }
       ]
@@ -954,11 +954,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "concrate",
+          resource: "concrate",
           val: 50
         }
       ],
@@ -974,15 +974,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1750
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 750
         }
       ]
@@ -991,15 +991,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 1250
         }
       ]
@@ -1008,19 +1008,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "minerals",
+          resource: "minerals",
           val: 5000
         },
         {
-          name: "iron",
+          resource: "iron",
           val: 2000
         },
         {
-          name: "science",
+          resource: "science",
           val: 5000
         },
         {
-          name: "beam",
+          resource: "beam",
           val: 35
         }
       ]
@@ -1029,15 +1029,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "iron",
+          resource: "iron",
           val: 1200
         },
         {
-          name: "science",
+          resource: "science",
           val: 5000
         },
         {
-          name: "beam",
+          resource: "beam",
           val: 50
         }
       ]
@@ -1046,11 +1046,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 35000
         },
         {
-          name: "compedium",
+          resource: "compedium",
           val: 5
         }
       ]
@@ -1059,11 +1059,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 2000
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         }
       ]
@@ -1072,11 +1072,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 5000
         }
       ]
@@ -1085,15 +1085,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 3500
         },
         {
-          name: "science",
+          resource: "science",
           val: 140000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 750
         }
       ],
@@ -1107,11 +1107,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 200000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 750
         }
       ],
@@ -1125,11 +1125,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "uranium",
+          resource: "uranium",
           val: 10000
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         }
       ]
@@ -1138,15 +1138,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 5000
         },
         {
-          name: "science",
+          resource: "science",
           val: 145000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 500
         }
       ]
@@ -1155,11 +1155,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 175000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 200
         }
       ]
@@ -1168,11 +1168,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "uranium",
+          resource: "uranium",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 165000
         }
       ]
@@ -1181,15 +1181,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "oil",
+          resource: "oil",
           val: 35000
         },
         {
-          name: "science",
+          resource: "science",
           val: 150000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 1000
         }
       ]
@@ -1198,11 +1198,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 7500
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 45
         }
       ]
@@ -1211,15 +1211,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "oil",
+          resource: "oil",
           val: 15000
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 250
         }
       ]
@@ -1228,19 +1228,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "oil",
+          resource: "oil",
           val: 50000
         },
         {
-          name: "uranium",
+          resource: "uranium",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 1250
         }
       ]
@@ -1249,11 +1249,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 75000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 1750
         }
       ]
@@ -1262,15 +1262,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "oil",
+          resource: "oil",
           val: 25000
         },
         {
-          name: "science",
+          resource: "science",
           val: 175000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 5000
         }
       ]
@@ -1279,11 +1279,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 125000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 15
         }
       ]
@@ -1292,15 +1292,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 125
         },
         {
-          name: "science",
+          resource: "science",
           val: 175000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 25
         }
       ]
@@ -1309,11 +1309,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 10000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 25
         }
       ]
@@ -1322,15 +1322,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 75
         },
         {
-          name: "blueprint",
+          resource: "blueprint",
           val: 25
         }
       ]
@@ -1339,15 +1339,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 20000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 30
         },
         {
-          name: "blueprint",
+          resource: "blueprint",
           val: 5
         }
       ]
@@ -1356,15 +1356,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 20000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 25
         },
         {
-          name: "blueprint",
+          resource: "blueprint",
           val: 5
         }
       ]
@@ -1373,15 +1373,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "oil",
+          resource: "oil",
           val: 20000
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 250
         }
       ]
@@ -1390,15 +1390,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 2000
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 250
         }
       ]
@@ -1407,23 +1407,23 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1250
         },
         {
-          name: "science",
+          resource: "science",
           val: 75000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 125
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 4000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 1000
         }
       ]
@@ -1432,15 +1432,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1250
         },
         {
-          name: "science",
+          resource: "science",
           val: 75000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 125
         }
       ]
@@ -1449,15 +1449,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 2500
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 250
         }
       ]
@@ -1466,11 +1466,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 225000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 500
         }
       ]
@@ -1479,15 +1479,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 500
         },
         {
-          name: "science",
+          resource: "science",
           val: 35000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 50
         }
       ]
@@ -1496,15 +1496,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 500000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 5
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 100
         }
       ]
@@ -1513,11 +1513,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 125000
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         }
       ]
@@ -1526,7 +1526,7 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 250
         }
       ]
@@ -1535,15 +1535,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 5
         },
         {
-          name: "science",
+          resource: "science",
           val: 25000
         },
         {
-          name: "starchart",
+          resource: "starchart",
           val: 75
         }
       ]
@@ -1552,15 +1552,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 15
         },
         {
-          name: "science",
+          resource: "science",
           val: 20000
         },
         {
-          name: "starchart",
+          resource: "starchart",
           val: 20
         }
       ]
@@ -1569,15 +1569,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 75
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         },
         {
-          name: "starchart",
+          resource: "starchart",
           val: 750
         }
       ]
@@ -1586,11 +1586,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 250000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 15
         }
       ]
@@ -1599,11 +1599,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 125
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         }
       ]
@@ -1612,11 +1612,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 250
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 15
         }
       ],
@@ -1630,11 +1630,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 7500
         },
         {
-          name: "science",
+          resource: "science",
           val: 750000
         }
       ]
@@ -1643,15 +1643,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 175
         },
         {
-          name: "science",
+          resource: "science",
           val: 525000
         },
         {
-          name: "thorium",
+          resource: "thorium",
           val: 7500
         }
       ]
@@ -1660,11 +1660,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 750
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 35
         }
       ],
@@ -1678,11 +1678,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 1750
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 70
         }
       ],
@@ -1696,11 +1696,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 2500
         },
         {
-          name: "void",
+          resource: "void",
           val: 250
         }
       ]
@@ -1709,11 +1709,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 5000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 100
         }
       ]
@@ -1722,11 +1722,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 125
         },
         {
-          name: "science",
+          resource: "science",
           val: 450000
         }
       ]
@@ -1735,15 +1735,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 125
         }
       ]
@@ -1752,11 +1752,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1250
         },
         {
-          name: "science",
+          resource: "science",
           val: 150000
         }
       ]
@@ -1765,11 +1765,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1500
         },
         {
-          name: "science",
+          resource: "science",
           val: 175000
         }
       ]
@@ -1778,15 +1778,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "catnip",
+          resource: "catnip",
           val: 1000000
         },
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1500
         },
         {
-          name: "science",
+          resource: "science",
           val: 175000
         }
       ]
@@ -1795,11 +1795,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 750
         },
         {
-          name: "science",
+          resource: "science",
           val: 125000
         }
       ]
@@ -1808,11 +1808,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 250
         },
         {
-          name: "science",
+          resource: "science",
           val: 125000
         }
       ]
@@ -1821,15 +1821,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 100
         },
         {
-          name: "scaffold",
+          resource: "scaffold",
           val: 1000
         }
       ]
@@ -1838,15 +1838,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 5000
         },
         {
-          name: "uranium",
+          resource: "uranium",
           val: 50
         },
         {
-          name: "science",
+          resource: "science",
           val: 150000
         }
       ]
@@ -1855,15 +1855,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 5000
         },
         {
-          name: "uranium",
+          resource: "uranium",
           val: 50
         },
         {
-          name: "science",
+          resource: "science",
           val: 150000
         }
       ]
@@ -1872,11 +1872,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 7500
         },
         {
-          name: "science",
+          resource: "science",
           val: 200000
         }
       ],
@@ -1886,15 +1886,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 100000
         },
         {
-          name: "steel",
+          resource: "steel",
           val: 10000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 250
         }
       ]
@@ -1903,15 +1903,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 7500
         },
         {
-          name: "uranium",
+          resource: "uranium",
           val: 150
         },
         {
-          name: "science",
+          resource: "science",
           val: 175000
         }
       ]
@@ -1920,11 +1920,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 200000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 25
         }
       ]
@@ -1933,11 +1933,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 400000
         },
         {
-          name: "thorium",
+          resource: "thorium",
           val: 10000
         }
       ],
@@ -1951,11 +1951,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 500000
         },
         {
-          name: "thorium",
+          resource: "thorium",
           val: 12500
         }
       ]
@@ -1964,15 +1964,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "oil",
+          resource: "oil",
           val: 50000
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 1250
         }
       ],
@@ -1986,11 +1986,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 200000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 750
         }
       ]
@@ -1999,11 +1999,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 225000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 5000
         }
       ]
@@ -2012,11 +2012,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 350
         },
         {
-          name: "science",
+          resource: "science",
           val: 250000
         }
       ]
@@ -2025,11 +2025,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 150000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 50
         }
       ]
@@ -2038,11 +2038,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 275000
         },
         {
-          name: "eludium",
+          resource: "eludium",
           val: 250
         }
       ]
@@ -2051,23 +2051,23 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 400000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 40000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 2000
         },
         {
-          name: "ship",
+          resource: "ship",
           val: 10000
         },
         {
-          name: "thorium",
+          resource: "thorium",
           val: 100000
         }
       ]
@@ -2076,11 +2076,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 350000
         },
         {
-          name: "starchart",
+          resource: "starchart",
           val: 500000
         }
       ],
@@ -2094,19 +2094,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "science",
+          resource: "science",
           val: 440000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 90000
         },
         {
-          name: "alloy",
+          resource: "alloy",
           val: 3500
         },
         {
-          name: "tanker",
+          resource: "tanker",
           val: 500
         }
       ],
@@ -2120,15 +2120,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 1250
         },
         {
-          name: "science",
+          resource: "science",
           val: 125000
         },
         {
-          name: "gear",
+          resource: "gear",
           val: 500
         }
       ]
@@ -2137,11 +2137,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 5000
         },
         {
-          name: "science",
+          resource: "science",
           val: 175000
         }
       ]
@@ -2150,15 +2150,15 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "titanium",
+          resource: "titanium",
           val: 7500
         },
         {
-          name: "science",
+          resource: "science",
           val: 195000
         },
         {
-          name: "concrate",
+          resource: "concrate",
           val: 125
         }
       ]
@@ -2167,11 +2167,11 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 2000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 15
         }
       ],
@@ -2186,19 +2186,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "antimatter",
+          resource: "antimatter",
           val: 2000
         },
         {
-          name: "science",
+          resource: "science",
           val: 300000
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 25
         },
         {
-          name: "void",
+          resource: "void",
           val: 1000
         }
       ]
@@ -2207,19 +2207,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "unobtainium",
+          resource: "unobtainium",
           val: 100000
         },
         {
-          name: "temporalFlux",
+          resource: "temporalFlux",
           val: 6500
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 25
         },
         {
-          name: "void",
+          resource: "void",
           val: 750
         }
       ]
@@ -2228,19 +2228,19 @@ let upgrades = {
       active: false,
       cost: [
         {
-          name: "temporalFlux",
+          resource: "temporalFlux",
           val: 4096
         },
         {
-          name: "timeCrystal",
+          resource: "timeCrystal",
           val: 128
         },
         {
-          name: "void",
+          resource: "void",
           val: 32
         },
         {
-          name: "blackcoin",
+          resource: "blackcoin",
           val: 64
         }
       ],
