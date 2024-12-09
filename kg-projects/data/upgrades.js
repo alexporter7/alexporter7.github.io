@@ -1,4 +1,4 @@
-let upgrades = {
+let upgradeList = {
     mineralHoes: {
       active: false,
       cost: [
@@ -311,7 +311,7 @@ let upgrades = {
           val: 100000
         },
         {
-          resource: "concrate",
+          resource: "concrete",
           val: 45
         }
       ]
@@ -366,7 +366,7 @@ let upgrades = {
           val: 100000
         },
         {
-          resource: "concrate",
+          resource: "concrete",
           val: 35
         }
       ]
@@ -383,7 +383,7 @@ let upgrades = {
           val: 25000
         },
         {
-          resource: "concrate",
+          resource: "concrete",
           val: 1250
         }
       ]
@@ -683,7 +683,7 @@ let upgrades = {
           val: 125000
         },
         {
-          resource: "concrate",
+          resource: "concrete",
           val: 45
         }
       ]
@@ -958,7 +958,7 @@ let upgrades = {
           val: 100000
         },
         {
-          resource: "concrate",
+          resource: "concrete",
           val: 50
         }
       ],
@@ -1050,7 +1050,7 @@ let upgrades = {
           val: 35000
         },
         {
-          resource: "compedium",
+          resource: "compendium",
           val: 5
         }
       ]
@@ -2158,7 +2158,7 @@ let upgrades = {
           val: 195000
         },
         {
-          resource: "concrate",
+          resource: "concrete",
           val: 125
         }
       ]

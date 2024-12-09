@@ -57,6 +57,10 @@ let data = {
     }
 }
 
+function setData(info) {
+    Object.keys(info).forEach((key) => data[key] = info[key]);
+}
+
 /*
  * Import Save
  */
@@ -70,11 +74,16 @@ function parseSaveImport() {
     _input.click();
 }
 
+function exportCalcData() {
+    
+}
+
 /*
  * Data Manipulation
  */
 function updateNeededAmount(resourceType, resource) {
-    data.resources[resourceType][resource].needed = Number(document.getElementById(`${resource}-needed`).value)
+    data.resources[resourceType][resource].needed = Number(document.getElementById(`${resource}-needed`).value);
+    console.log(data.resources[resourceType][resource].needed);
     document.getElementById('non-craft').innerHTML = `Value: ${document.getElementById(`${resource}-needed`).value} | Data: `
     rebuildTables();
 }
@@ -84,14 +93,9 @@ function updateNeededAmount(resourceType, resource) {
  */
 
 function getCarryOverAmount(resource) {
-    switch(resource.carryOverType) {
-        case "non-craftable":
-            return resource.amount * 0.15 * data.currentBuildings.chronosphere.amount;
-        case "craftable":
-            return 0;
-        case "none":
-            return 0;
-    }
+    return (resource.carryOverType == "non-craftable") 
+                ? resource.amount * 0.15 * data.currentBuildings.chronosphere.amount 
+                : 0
 }
 
 function calculateDelta(resourceInfo) {
@@ -99,7 +103,7 @@ function calculateDelta(resourceInfo) {
 }
 
 function getDeltaColor(delta) {
-    return (delta < 0) ? "red" : "white"
+    return (delta < 0) ? "red" : "green"
 }
 
 function getCostString(techCost) {
@@ -114,6 +118,28 @@ function getShortNumber(number) {
         notation: "compact",
         maximumFractionDigits: 2
     }).format(number);
+}
+
+function getResourceType(resourceKey) {
+    return (Object.keys(data.resources.craftable).indexOf(resourceKey) != -1) ? "craftable" : "nonCraftable";
+}
+
+function calculateResourceCost() {
+    let resourcesNeeded = {};
+    document.getElementsByName("tech-checkbox").forEach(
+        (element) => {
+            if(element.checked) {
+                data.techs[element.id].cost.forEach((resource) => {
+                    if(!resourcesNeeded[resource.resource])
+                        resourcesNeeded[resource.resource] = 0;
+                    resourcesNeeded[resource.resource] += resource.val}
+                )};
+            }
+    );
+
+    console.log(JSON.stringify(resourcesNeeded))
+    Object.keys(resourcesNeeded).forEach((resource) => data.resources[getResourceType(resource)][resource].needed += resourcesNeeded[resource])
+    rebuildTables()
 }
 
 /*
@@ -155,7 +181,7 @@ function generateNonCraftableResourceTable() {
                                         type="text" 
                                         class="form-control form-control-sm" 
                                         value="${resourceObject.info.needed}"
-                                        onchange="updateNeededAmount('nonCraftable', ${resource})">
+                                        onchange="updateNeededAmount('nonCraftable', '${resource}')">
                                 </td>
                                 <td class="text-center" style="color:${getDeltaColor(resourceObject.delta)}">${resourceObject.delta}</td>
                             </tr>`
@@ -191,25 +217,25 @@ function generateCraftableResourceTable() {
     return resourceTable;
 }
 
-function generateTechList(techList) {
+function generateTechList() {
     let techListHtml = "";
-    Object.keys(techList).forEach(
+    Object.keys(data.techs).forEach(
         (tech) => {
             techListHtml += 
-                `<input class="form-check-input" type="checkbox" value="" id=${tech}>
-                <label class="form-check-label" for="${tech}">${tech} | ${getCostString(techList[tech].cost)}</label><br>`
+                `<input class="form-check-input" type="checkbox" value="" id=${tech} name="tech-checkbox", onclick="calculateResourceCost()">
+                <label class="form-check-label" for="${tech}">${tech} | ${getCostString(data.techs[tech].cost)}</label><br>`
         }
     );
     return techListHtml;
 }
 
-function generateUpgradeList(upgradeList) {
+function generateUpgradeList() {
     let upgradeListHtml = "";
-    Object.keys(upgradeList).forEach(
+    Object.keys(data.upgrades).forEach(
         (upgrade) => {
             upgradeListHtml += 
                 `<input class="form-check-input" type="checkbox" value="" id=${upgrade}>
-                <label class="form-check-label" for="${upgrade}">${upgrade} | ${getCostString(upgradeList[upgrade].cost)}</label><br>`
+                <label class="form-check-label" for="${upgrade}">${upgrade} | ${getCostString(data.upgrades[upgrade].cost)}</label><br>`
         }
     );
     return upgradeListHtml;
