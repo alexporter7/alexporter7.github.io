@@ -83,7 +83,7 @@ function updateNeededAmount(resourceType, resource) {
  * Calculations
  */
 
-function getcarryOverAmount(resource) {
+function getCarryOverAmount(resource) {
     switch(resource.carryOverType) {
         case "non-craftable":
             return resource.amount * 0.15 * data.currentBuildings.chronosphere.amount;
@@ -100,6 +100,20 @@ function calculateDelta(resourceInfo) {
 
 function getDeltaColor(delta) {
     return (delta < 0) ? "red" : "white"
+}
+
+function getCostString(techCost) {
+    let costString = "";
+    techCost.forEach((cost) => costString += `${cost.resource}: ${getShortNumber(Number(cost.val))} / `);
+    costString = costString.slice(0, -2);
+    return costString;
+}
+
+function getShortNumber(number) {
+    return Intl.NumberFormat('en-US', {
+        notation: "compact",
+        maximumFractionDigits: 2
+    }).format(number);
 }
 
 /*
@@ -128,7 +142,7 @@ function generateNonCraftableResourceTable() {
         (resource) => {
             let resourceObject = {
                 info: data.resources.nonCraftable[resource],
-                carryOver: getcarryOverAmount(data.resources.nonCraftable[resource]),
+                carryOver: getCarryOverAmount(data.resources.nonCraftable[resource]),
             };
             resourceObject.delta = calculateDelta({carryOver: resourceObject.carryOver, needed: resourceObject.info.needed})
             resourceTable += `<tr>
@@ -169,7 +183,7 @@ function generateCraftableResourceTable() {
             resourceTable += `<tr>
                                 <td style="color:${resourceObject.color}">${resource}</td>
                                 <td>${resourceObject.amount}</td>
-                                <td>${getcarryOverAmount(resourceObject)}
+                                <td>${getCarryOverAmount(resourceObject)}
                             </tr>`
         }
     );
@@ -178,34 +192,12 @@ function generateCraftableResourceTable() {
 }
 
 function generateTechList(techList) {
-    // let totalTechs = Object.keys(techList).length;
-    // let totalColumns = 4;
-    // let techListColumns = [];
-    // let itemsPerColumn = totalTechs/totalColumns;
-
-    // for(let i = 0; i < itemsPerColumn; i++) {
-    //     let techListColumn = `<div class="col-3>`;
-    //     Object.keys(Object.fromEntries(Object.entries(techList).slice(i * itemsPerColumn, Math.min((i + 1) * itemsPerColumn, totalTechs)))).forEach(
-    //         (tech) => {
-    //             techListColumn += 
-    //             `<input class="form-check-input" type="checkbox" value="" id=${tech}>
-    //             <label class="form-check-label" for="${tech}">${tech}</label><br>`
-    //         }
-    //     );
-    //     techListColumn += "</div>";
-    //     techListColumns.push(techListColumn);
-    // }
-
     let techListHtml = "";
-    //techListColumns.forEach((column) => techListHtml += column);
     Object.keys(techList).forEach(
         (tech) => {
-            let costString = "Cost: ";
-            techList[tech].cost.forEach((techCost) => costString += `${techCost.resource}: ${techCost.val} / `)
-            costString = costString.slice(0, -2);
             techListHtml += 
                 `<input class="form-check-input" type="checkbox" value="" id=${tech}>
-                <label class="form-check-label" for="${tech}">${tech} | ${costString}</label><br>`
+                <label class="form-check-label" for="${tech}">${tech} | ${getCostString(techList[tech].cost)}</label><br>`
         }
     );
     return techListHtml;
