@@ -50,6 +50,7 @@ let data = {
             burnedParagon: {color: "darkpurple", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             timeCrystal: {color: "green", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             void: {color: "purple", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
+            relic: {color: "purple", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0}
         }
     },
     currentBuildings: {
@@ -68,7 +69,14 @@ function parseSaveImport() {
     let _input = document.createElement('input');
     _input.type = 'file';
     _input.onchange = _ => {
-        Object.keys(data.resources.nonCraftable).forEach((resource) => data.resources.nonCraftable[resource].amount = 1);
+        let saveFile = _input.files[0];
+        let fileReader = new FileReader();
+        fileReader.readAsText(saveFile, 'UTF-8');
+        fileReader.onload = readerEvent => {
+            let saveGameData = readerEvent.target.result;
+            console.log(atob(saveGameData));
+        };
+        //Object.keys(data.resources.nonCraftable).forEach((resource) => data.resources.nonCraftable[resource].amount = 1);
         rebuildTables();
     };
     _input.click();
@@ -94,7 +102,7 @@ function updateNeededAmount(resourceType, resource) {
 
 function getCarryOverAmount(resource) {
     return (resource.carryOverType == "non-craftable") 
-                ? resource.amount * 0.15 * data.currentBuildings.chronosphere.amount 
+                ? resource.amount * 0.015 * data.currentBuildings.chronosphere.amount 
                 : 0
 }
 
@@ -130,6 +138,16 @@ function calculateResourceCost() {
         (element) => {
             if(element.checked) {
                 data.techs[element.id].cost.forEach((resource) => {
+                    if(!resourcesNeeded[resource.resource])
+                        resourcesNeeded[resource.resource] = 0;
+                    resourcesNeeded[resource.resource] += resource.val}
+                )};
+            }
+    );
+    document.getElementsByName("upgrade-checkbox").forEach(
+        (element) => {
+            if(element.checked) {
+                data.upgrades[element.id].cost.forEach((resource) => {
                     if(!resourcesNeeded[resource.resource])
                         resourcesNeeded[resource.resource] = 0;
                     resourcesNeeded[resource.resource] += resource.val}
@@ -183,7 +201,7 @@ function generateNonCraftableResourceTable() {
                                         value="${resourceObject.info.needed}"
                                         onchange="updateNeededAmount('nonCraftable', '${resource}')">
                                 </td>
-                                <td class="text-center" style="color:${getDeltaColor(resourceObject.delta)}">${resourceObject.delta}</td>
+                                <td class="text-center" style="color:${getDeltaColor(resourceObject.delta)}">${getShortNumber(resourceObject.delta)}</td>
                             </tr>`
         }
     );
@@ -193,23 +211,38 @@ function generateNonCraftableResourceTable() {
 
 function generateCraftableResourceTable() {
     let resourceTable = `
-        <table class="table">
+        <table class="table table-sm align-middle">
             <thead>
                 <tr>
-                    <th scope="col">Resource</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">After Reset</th>
+                    <th scope="col" style="width: 6% !important">Resource</th>
+                    <th scope="col" style="width: 6% !important">Amount</th>
+                    <th scope="col" style="width: 6% !important">After Reset</th>
+                    <th scope="col" style="width: 6% !important">Needed</th>
+                    <th scope="col" style="width: 6% !important">Delta</th>
                 </tr>
             </thead>
             <tbody>          
     `;
     Object.keys(data.resources.craftable).forEach(
         (resource) => {
-            let resourceObject = data.resources.craftable[resource]
+            let resourceObject = {
+                info: data.resources.craftable[resource],
+                carryOver: getCarryOverAmount(data.resources.craftable[resource]),
+            };
+            resourceObject.delta = calculateDelta({carryOver: resourceObject.carryOver, needed: resourceObject.info.needed})
             resourceTable += `<tr>
-                                <td style="color:${resourceObject.color}">${resource}</td>
-                                <td>${resourceObject.amount}</td>
-                                <td>${getCarryOverAmount(resourceObject)}
+                                <td style="color:${resourceObject.info.color}">${resource}</td>
+                                <td class="text-center">${resourceObject.info.amount}</td>
+                                <td class="text-center">${resourceObject.carryOver}
+                                <td class="text-center">
+                                    <input
+                                        id="${resource}-needed"
+                                        type="text" 
+                                        class="form-control form-control-sm" 
+                                        value="${resourceObject.info.needed}"
+                                        onchange="updateNeededAmount('craftable', '${resource}')">
+                                </td>
+                                <td class="text-center" style="color:${getDeltaColor(resourceObject.delta)}">${resourceObject.delta}</td>
                             </tr>`
         }
     );
@@ -234,7 +267,7 @@ function generateUpgradeList() {
     Object.keys(data.upgrades).forEach(
         (upgrade) => {
             upgradeListHtml += 
-                `<input class="form-check-input" type="checkbox" value="" id=${upgrade}>
+                `<input class="form-check-input" type="checkbox" value="" id=${upgrade} name="upgrade-checkbox", onclick="calculateResourceCost()">
                 <label class="form-check-label" for="${upgrade}">${upgrade} | ${getCostString(data.upgrades[upgrade].cost)}</label><br>`
         }
     );
