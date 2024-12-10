@@ -277,7 +277,7 @@ let techList = {
           "epicurianism"
         ],
         crafts: [
-          "compendium"
+          "compedium"
         ]
       }
     },
@@ -412,7 +412,7 @@ let techList = {
           val: 42000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 10
         }
       ],
@@ -434,7 +434,7 @@ let techList = {
           val: 50000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 35
         }
       ],
@@ -475,7 +475,7 @@ let techList = {
           val: 60000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 50
         }
       ],
@@ -503,7 +503,7 @@ let techList = {
           val: 60000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 60
         }
       ],
@@ -542,7 +542,7 @@ let techList = {
           val: 65000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 65
         }
       ],
@@ -572,7 +572,7 @@ let techList = {
           val: 75000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 85
         }
       ],
@@ -593,7 +593,7 @@ let techList = {
           val: 85000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 100
         }
       ],
@@ -614,7 +614,7 @@ let techList = {
           val: 145000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 500
         }
       ],
@@ -635,7 +635,7 @@ let techList = {
           val: 190000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 1500
         }
       ],

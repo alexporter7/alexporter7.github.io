@@ -1050,7 +1050,7 @@ let upgradeList = {
           val: 35000
         },
         {
-          resource: "compendium",
+          resource: "compedium",
           val: 5
         }
       ]
