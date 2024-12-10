@@ -33,7 +33,7 @@ let data = {
             uranium: {color: "lightgreen", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             unobtainium: {color: "maroon", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             antimatter: {color: "purple", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
-            catpower: {color: "yellow", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
+            manpower: {color: "yellow", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             science: {color: "aqua", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             culture: {color: "yellow", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             faith: {color: "yellow", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
@@ -73,13 +73,25 @@ function parseSaveImport() {
         let fileReader = new FileReader();
         fileReader.readAsText(saveFile, 'UTF-8');
         fileReader.onload = readerEvent => {
-            let saveGameData = readerEvent.target.result;
-            console.log(atob(saveGameData));
+            processSaveImport(JSON.parse(readerEvent.target.result));
         };
         //Object.keys(data.resources.nonCraftable).forEach((resource) => data.resources.nonCraftable[resource].amount = 1);
         rebuildTables();
     };
     _input.click();
+}
+
+function processSaveImport(gameData) {
+    gameData.resources.forEach(
+        (resource) => {
+            if(data.resources[getResourceType(resource.name)][resource.name])
+                data.resources[getResourceType(resource.name)][resource.name].amount = Math.round(resource.value)
+        }
+    )
+    rebuildTables();
+    // gameData.resources.forEach(
+    //     (resource) => console.log(`${resource.name} |${data.resources[getResourceType(resource.name)][resource.name].amount} | ${Math.round(resource.value)}`)
+    // )
 }
 
 function exportCalcData() {
@@ -102,7 +114,7 @@ function updateNeededAmount(resourceType, resource) {
 
 function getCarryOverAmount(resource) {
     return (resource.carryOverType == "non-craftable") 
-                ? resource.amount * 0.015 * data.currentBuildings.chronosphere.amount 
+                ? Math.round(resource.amount * 0.015 * data.currentBuildings.chronosphere.amount)
                 : 0
 }
 
@@ -156,6 +168,8 @@ function calculateResourceCost() {
     );
 
     console.log(JSON.stringify(resourcesNeeded))
+    Object.keys(data.resources).forEach((resourceType) => 
+        Object.keys(data.resources[resourceType]).forEach((resource) => data.resources[resourceType][resource].needed = 0))
     Object.keys(resourcesNeeded).forEach((resource) => data.resources[getResourceType(resource)][resource].needed += resourcesNeeded[resource])
     rebuildTables()
 }
