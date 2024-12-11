@@ -311,7 +311,7 @@ let upgradeList = {
           val: 100000
         },
         {
-          resource: "concrete",
+          resource: "concrate",
           val: 45
         }
       ]
@@ -366,7 +366,7 @@ let upgradeList = {
           val: 100000
         },
         {
-          resource: "concrete",
+          resource: "concrate",
           val: 35
         }
       ]
@@ -383,7 +383,7 @@ let upgradeList = {
           val: 25000
         },
         {
-          resource: "concrete",
+          resource: "concrate",
           val: 1250
         }
       ]
@@ -683,7 +683,7 @@ let upgradeList = {
           val: 125000
         },
         {
-          resource: "concrete",
+          resource: "concrate",
           val: 45
         }
       ]
@@ -958,7 +958,7 @@ let upgradeList = {
           val: 100000
         },
         {
-          resource: "concrete",
+          resource: "concrate",
           val: 50
         }
       ],
@@ -2158,7 +2158,7 @@ let upgradeList = {
           val: 195000
         },
         {
-          resource: "concrete",
+          resource: "concrate",
           val: 125
         }
       ]

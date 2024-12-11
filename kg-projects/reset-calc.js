@@ -74,8 +74,6 @@ function parseSaveImport() {
         fileReader.onload = readerEvent => {
             processSaveImport(JSON.parse(readerEvent.target.result));
         };
-        //Object.keys(data.resources.nonCraftable).forEach((resource) => data.resources.nonCraftable[resource].amount = 1);
-        rebuildTables();
     };
     _input.click();
 }
@@ -86,11 +84,22 @@ function processSaveImport(gameData) {
             if(data.resources[getResourceType(resource.name)][resource.name])
                 data.resources[getResourceType(resource.name)][resource.name].amount = Math.round(resource.value)
         }
+    );
+    gameData.science.techs.forEach(
+        (tech) => {
+            if(tech.researched)
+                document.getElementById(tech.name).checked = true
+        }
+    );
+    gameData.workshop.upgrades.forEach(
+        (upgrade) => {
+            if(upgrade.researched)
+                document.getElementById(upgrade.name).checked = true
+        }
     )
+    document.getElementById("metaphysics-list-checkbox").innerHTML = generateMetaphysicsList(gameData.prestige.perks);
+    calculateResourceCost();
     rebuildTables();
-    // gameData.resources.forEach(
-    //     (resource) => console.log(`${resource.name} |${data.resources[getResourceType(resource.name)][resource.name].amount} | ${Math.round(resource.value)}`)
-    // )
 }
 
 function exportCalcData() {
@@ -102,11 +111,14 @@ function exportCalcData() {
  */
 function updateNeededAmount(resourceType, resource) {
     data.resources[resourceType][resource].needed = Number(document.getElementById(`${resource}-needed`).value);
-    console.log(data.resources[resourceType][resource].needed);
-    document.getElementById('non-craft').innerHTML = `Value: ${document.getElementById(`${resource}-needed`).value} | Data: `
     rebuildTables();
 }
 
+function updateBuildingAmount(building, amount) {
+    data.buildings[building].amount += Number(amount);
+    document.getElementById(building).innerHTML = `${building} (${data.buildings[building].amount})`
+    rebuildTables();
+}
 /*
  * Calculations
  */
@@ -116,11 +128,26 @@ function getCarryOverAmount(resource) {
         case "non-craftable":
             return Math.round(resource.amount * 0.015 * data.buildings.chronosphere.amount);
         case "craftable":
-            return 0;
+            return Math.round(Math.sqrt(resource.amount) * 1.5 * data.buildings.chronosphere.amount);
         case "persistent":
             return resource.amount;
         case "none":
             return 0;
+    }
+}
+
+function calculatePreResetAmountNeeded(resourceObject) {
+    let resourceNeed = data.resources[getResourceType(resourceObject.resourceName)][resourceObject.resourceName].needed;
+    let carryOverType = data.resources[getResourceType(resourceObject.resourceName)][resourceObject.resourceName].carryOverType;
+    switch(carryOverType) {
+        case "non-craftable":
+            return Math.round(resourceNeed / Number(data.buildings.chronosphere.amount) / 0.015);
+        case "craftable":
+            return (resourceNeed / Number(data.buildings.chronosphere.amount) / 1.5)**2;
+        case "persistent":
+            return "N/A";
+        case "none":
+            return "N/A";
     }
 }
 
@@ -152,6 +179,7 @@ function getResourceType(resourceKey) {
 
 function calculateResourceCost() {
     let resourcesNeeded = {};
+    /* Techs */
     document.getElementsByName("tech-checkbox").forEach(
         (element) => {
             if(element.checked) {
@@ -162,6 +190,7 @@ function calculateResourceCost() {
                 )};
             }
     );
+    /* Upgrades */
     document.getElementsByName("upgrade-checkbox").forEach(
         (element) => {
             if(element.checked) {
@@ -172,8 +201,15 @@ function calculateResourceCost() {
                 )};
             }
     );
+    /* Metaphysics */
+    document.getElementsByName("metaphysics-checkbox").forEach(
+        (element) => {
+            if(element.checked) {
 
-    console.log(JSON.stringify(resourcesNeeded))
+            }
+        }
+    )
+
     Object.keys(data.resources).forEach((resourceType) => 
         Object.keys(data.resources[resourceType]).forEach((resource) => data.resources[resourceType][resource].needed = 0))
     Object.keys(resourcesNeeded).forEach((resource) => data.resources[getResourceType(resource)][resource].needed += resourcesNeeded[resource])
@@ -198,6 +234,7 @@ function generateNonCraftableResourceTable() {
                     <th scope="col" style="width: 6% !important">After Reset</th>
                     <th scope="col" style="width: 6% !important">Needed</th>
                     <th scope="col" style="width: 6% !important">Delta</th>
+                    <th scope="col" style="width: 6% !important">Needed Pre-Reset</th>
                 </tr>
             </thead>
             <tbody>          
@@ -205,14 +242,15 @@ function generateNonCraftableResourceTable() {
     Object.keys(data.resources.nonCraftable).forEach(
         (resource) => {
             let resourceObject = {
+                resourceName: resource,
                 info: data.resources.nonCraftable[resource],
                 carryOver: getCarryOverAmount(data.resources.nonCraftable[resource]),
             };
             resourceObject.delta = calculateDelta({carryOver: resourceObject.carryOver, needed: resourceObject.info.needed})
             resourceTable += `<tr>
                                 <td style="color:${resourceObject.info.color}">${resourceObject.info.label}</td>
-                                <td class="text-center">${resourceObject.info.amount}</td>
-                                <td class="text-center">${resourceObject.carryOver}
+                                <td class="text-center">${getShortNumber(resourceObject.info.amount)}</td>
+                                <td class="text-center">${getShortNumber(resourceObject.carryOver)}</td>
                                 <td class="text-center">
                                     <input
                                         id="${resource}-needed"
@@ -222,6 +260,7 @@ function generateNonCraftableResourceTable() {
                                         onchange="updateNeededAmount('nonCraftable', '${resource}')">
                                 </td>
                                 <td class="text-center" style="color:${getDeltaColor(resourceObject.delta)}">${getShortNumber(resourceObject.delta)}</td>
+                                <td class="text-center">${getShortNumber(calculatePreResetAmountNeeded(resourceObject))}</td>
                             </tr>`
         }
     );
@@ -239,6 +278,7 @@ function generateCraftableResourceTable() {
                     <th scope="col" style="width: 6% !important">After Reset</th>
                     <th scope="col" style="width: 6% !important">Needed</th>
                     <th scope="col" style="width: 6% !important">Delta</th>
+                    <th scope="col" style="width: 6% !important">Needed Pre-Reset</th>
                 </tr>
             </thead>
             <tbody>          
@@ -246,14 +286,15 @@ function generateCraftableResourceTable() {
     Object.keys(data.resources.craftable).forEach(
         (resource) => {
             let resourceObject = {
+                resourceName: resource,
                 info: data.resources.craftable[resource],
                 carryOver: getCarryOverAmount(data.resources.craftable[resource]),
             };
             resourceObject.delta = calculateDelta({carryOver: resourceObject.carryOver, needed: resourceObject.info.needed})
             resourceTable += `<tr>
                                 <td style="color:${resourceObject.info.color}">${resourceObject.info.label}</td>
-                                <td class="text-center">${resourceObject.info.amount}</td>
-                                <td class="text-center">${resourceObject.carryOver}
+                                <td class="text-center">${getShortNumber(resourceObject.info.amount)}</td>
+                                <td class="text-center">${getShortNumber(resourceObject.carryOver)}</td>
                                 <td class="text-center">
                                     <input
                                         id="${resource}-needed"
@@ -262,7 +303,8 @@ function generateCraftableResourceTable() {
                                         value="${resourceObject.info.needed}"
                                         onchange="updateNeededAmount('craftable', '${resource}')">
                                 </td>
-                                <td class="text-center" style="color:${getDeltaColor(resourceObject.delta)}">${resourceObject.delta}</td>
+                                <td class="text-center" style="color:${getDeltaColor(resourceObject.delta)}">${getShortNumber(resourceObject.delta)}</td>
+                                <td class="text-center">${getShortNumber(calculatePreResetAmountNeeded(resourceObject))}</td>
                             </tr>`
         }
     );
@@ -275,7 +317,7 @@ function generateTechList() {
     Object.keys(data.techs).forEach(
         (tech) => {
             techListHtml += 
-                `<input class="form-check-input" type="checkbox" value="" id=${tech} name="tech-checkbox", onclick="calculateResourceCost()">
+                `<input class="form-check-input" type="checkbox" value="" id=${tech} name="tech-checkbox" onclick="calculateResourceCost()">
                 <label class="form-check-label" for="${tech}">${tech} | ${getCostString(data.techs[tech].cost)}</label><br>`
         }
     );
@@ -287,9 +329,33 @@ function generateUpgradeList() {
     Object.keys(data.upgrades).forEach(
         (upgrade) => {
             upgradeListHtml += 
-                `<input class="form-check-input" type="checkbox" value="" id=${upgrade} name="upgrade-checkbox", onclick="calculateResourceCost()">
+                `<input class="form-check-input" type="checkbox" value="" id=${upgrade} name="upgrade-checkbox" onclick="calculateResourceCost()">
                 <label class="form-check-label" for="${upgrade}">${upgrade} | ${getCostString(data.upgrades[upgrade].cost)}</label><br>`
         }
     );
     return upgradeListHtml;
+}
+
+function generateMetaphysicsList() {
+    let metaphysicsListHtml = "";
+    Object.keys(data.metaphysics).forEach(
+        (perk) => {
+            metaphysicsListHtml +=
+                `<input class="form-check-input" type="checkbox" value="" id=${perk} name="metaphysics-checkbox", onclick="calculateResourceCost()"
+                    ${data.metaphysics[perk].researched ? "checked" : ""}>
+                <label class="form-check-label" for="${perk}">${data.metaphysics[perk].label}</label><br>`
+        }
+    );
+    return metaphysicsListHtml;
+}
+
+function generateBuildingsList() {
+    let buildingsListHtml = "";
+    buildingsListHtml += `
+    <div class="btn-group" role="group" aria-label="testLabel">
+        <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('chronosphere', -1)"> - </button>
+        <button type="button" class="btn btn-outline-light" id="chronosphere"> Chronospheres (${data.buildings.chronosphere.amount}) </button>
+        <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('chronosphere', 1)"> + </button>
+    </div>`;
+    return buildingsListHtml;
 }
