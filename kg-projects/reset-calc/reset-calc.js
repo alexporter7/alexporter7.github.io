@@ -72,7 +72,8 @@ function parseSaveImport() {
         let fileReader = new FileReader();
         fileReader.readAsText(saveFile, 'UTF-8');
         fileReader.onload = readerEvent => {
-            processSaveImport(JSON.parse(readerEvent.target.result));
+            console.log(data)
+            processSaveImport(JSON.parse(data.saveDecoder.decompressFromBase64(readerEvent.target.result)));
         };
     };
     _input.click();
@@ -119,6 +120,15 @@ function updateBuildingAmount(building, amount) {
     document.getElementById(building).innerHTML = `${building} (${data.buildings[building].amount})`
     rebuildTables();
 }
+
+/*
+ * Mappings
+ */
+function getLabel(key) {
+    return data.mappings[key];
+}
+
+
 /*
  * Calculations
  */
@@ -318,7 +328,7 @@ function generateTechList() {
         (tech) => {
             techListHtml += 
                 `<input class="form-check-input" type="checkbox" value="" id=${tech} name="tech-checkbox" onclick="calculateResourceCost()">
-                <label class="form-check-label" for="${tech}">${tech} | ${getCostString(data.techs[tech].cost)}</label><br>`
+                <label class="form-check-label" for="${tech}">${getLabel(`science.${tech}.label`)} | ${getCostString(data.techs[tech].cost)}</label><br>`
         }
     );
     return techListHtml;
@@ -330,7 +340,7 @@ function generateUpgradeList() {
         (upgrade) => {
             upgradeListHtml += 
                 `<input class="form-check-input" type="checkbox" value="" id=${upgrade} name="upgrade-checkbox" onclick="calculateResourceCost()">
-                <label class="form-check-label" for="${upgrade}">${upgrade} | ${getCostString(data.upgrades[upgrade].cost)}</label><br>`
+                <label class="form-check-label" for="${upgrade}">${getLabel(`workshop.${upgrade}.label`)} | ${getCostString(data.upgrades[upgrade].cost)}</label><br>`
         }
     );
     return upgradeListHtml;
@@ -343,7 +353,7 @@ function generateMetaphysicsList() {
             metaphysicsListHtml +=
                 `<input class="form-check-input" type="checkbox" value="" id=${perk} name="metaphysics-checkbox", onclick="calculateResourceCost()"
                     ${data.metaphysics[perk].researched ? "checked" : ""}>
-                <label class="form-check-label" for="${perk}">${data.metaphysics[perk].label}</label><br>`
+                <label class="form-check-label" for="${perk}">${getLabel(`prestige.${perk}.label`)}</label><br>`
         }
     );
     return metaphysicsListHtml;
@@ -354,7 +364,7 @@ function generateBuildingsList() {
     buildingsListHtml += `
     <div class="btn-group" role="group" aria-label="testLabel">
         <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('chronosphere', -1)"> - </button>
-        <button type="button" class="btn btn-outline-light" id="chronosphere"> Chronospheres (${data.buildings.chronosphere.amount}) </button>
+        <button type="button" class="btn btn-outline-light" id="chronosphere">chronospheres (${data.buildings.chronosphere.amount})</button>
         <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('chronosphere', 1)"> + </button>
     </div>`;
     return buildingsListHtml;
