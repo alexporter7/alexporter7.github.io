@@ -9,11 +9,21 @@
     <script type="text/javascript" src="../data/upgrades.js"></script>
     <script type="text/javascript" src="../data/metaphysics.js"></script>
     <script type="text/javascript" src="../data/translate.js"></script>
+    <script type="text/javascript" src="../data/buildings.js"></script>
     <script type="text/javascript" src="../lib/save-decoder.js"></script>
     <script type="text/javascript" src="reset-calc.js"></script>
   </head>
   <body data-bs-theme="dark">
-    <script>setData({saveDecoder: LZString, mappings: mappings, techs: techList, upgrades: upgradeList, metaphysics: metaphysicsList})</script>
+    <script>
+      setData({
+        saveDecoder: LZString, 
+        mappings: mappings, 
+        techs: techList, 
+        upgrades: upgradeList, 
+        metaphysics: metaphysicsList,
+        buildings: buildings
+      });
+    </script>
     <div class="container-fluid">
       <div class="row">
         <h1>Kittens Game Reset Calculator</h1>

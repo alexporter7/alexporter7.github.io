@@ -36,7 +36,7 @@ let data = {
             science: {label: "science", color: "aqua", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             culture: {label: "culture", color: "yellow", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             faith: {label: "faith", color: "yellow", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
-            kittens: {label: "kittens", color: "yellow", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
+            kittens: {label: "kittens", color: "yellow", amount: 0, cap: 0, carryOverType: "none", needed: 0},
             starchart: {label: "starchart", color: "purple", amount: 0, cap: 0, carryOverType: "non-craftable", needed: 0},
             furs: {label: "furs", color: "darkorange", amount: 0, cap: 0, carryOverType: "none", needed: 0},
             ivory: {label: "ivory", color: "darkorange", amount: 0, cap: 0, carryOverType: "none", needed: 0},
@@ -51,9 +51,6 @@ let data = {
             void: {label: "void", color: "purple", amount: 0, cap: 0, carryOverType: "persistent", needed: 0},
             relic: {label: "relic", color: "purple", amount: 0, cap: 0, carryOverType: "persistent", needed: 0}
         }
-    },
-    buildings: {
-        chronosphere: {amount: 4}
     }
 }
 
@@ -147,6 +144,8 @@ function getCarryOverAmount(resource) {
 }
 
 function calculatePreResetAmountNeeded(resourceObject) {
+    if(buildings.chronosphere.amount == 0)
+        return 0;
     let resourceNeed = data.resources[getResourceType(resourceObject.resourceName)][resourceObject.resourceName].needed;
     let carryOverType = data.resources[getResourceType(resourceObject.resourceName)][resourceObject.resourceName].carryOverType;
     switch(carryOverType) {
