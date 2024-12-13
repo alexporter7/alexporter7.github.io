@@ -1,636 +1,508 @@
 let buildings = {
-    pasture: {
-      cost: [
-        {
-          name: "catnip",
-          val: 100
-        },
-        {
-          name: "wood",
+  field: {
+      cost: [{
+          resource: "catnip",
           val: 10
-        }
-      ],
+      }, ],
       amount: 0,
-	priceRatio: 1.15
-    },
-    solarfarm: {
-      cost: [
-        {
-          name: "titanium",
-          val: 250
-        }
-      ],
-      amount: 0,
-	priceRatio: 1.15
-    },
-    aqueduct: {
-      cost: [
-        {
-          name: "minerals",
-          val: 75
-        }
-      ],
-      amount: 0,
-	priceRatio: 1.12
-    },
-    hydroplant: {
-      cost: [
-        {
-          name: "titanium",
-          val: 2500
-        },
-        {
-          name: "concrate",
+      priceRatio: 1.12
+  },
+  pasture: {
+      cost: [{
+          resource: "catnip",
           val: 100
-        }
-      ],
+      }, {
+          resource: "wood",
+          val: 10
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    hut: {
-      cost: [
-        {
-          name: "wood",
-          val: 5
-        }
-      ],
-      amount: 0,
-	priceRatio: 2.5
-    },
-    logHouse: {
-      cost: [
-        {
-          name: "wood",
-          val: 200
-        },
-        {
-          name: "minerals",
+      priceRatio: 1.15
+  },
+  solarfarm: {
+      cost: [{
+          resource: "titanium",
           val: 250
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    mansion: {
-      cost: [
-        {
-          name: "titanium",
+      priceRatio: 1.15
+  },
+  aqueduct: {
+      cost: [{
+          resource: "minerals",
+          val: 75
+      }],
+      amount: 0,
+      priceRatio: 1.12
+  },
+  hydroplant: {
+      cost: [{
+          resource: "titanium",
+          val: 2500
+      }, {
+          resource: "concrate",
+          val: 100
+      }],
+      amount: 0,
+      priceRatio: 1.15
+  },
+  hut: {
+      cost: [{
+          resource: "wood",
+          val: 5
+      }],
+      amount: 0,
+      priceRatio: 2.5
+  },
+  logHouse: {
+      cost: [{
+          resource: "wood",
+          val: 200
+      }, {
+          resource: "minerals",
+          val: 250
+      }],
+      amount: 0,
+      priceRatio: 1.15
+  },
+  mansion: {
+      cost: [{
+          resource: "titanium",
           val: 25
-        },
-        {
-          name: "slab",
+      }, {
+          resource: "slab",
           val: 185
-        },
-        {
-          name: "steel",
+      }, {
+          resource: "steel",
           val: 75
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    library: {
-      cost: [
-        {
-          name: "wood",
+      priceRatio: 1.15
+  },
+  library: {
+      cost: [{
+          resource: "wood",
           val: 25
-        }
-      ]
-    },
-    dataCenter: {
-      cost: [
-        {
-          name: "steel",
+      }],
+      amount: 0,
+      priceRato: 1.15
+  },
+  dataCenter: {
+      cost: [{
+          resource: "steel",
           val: 100
-        },
-        {
-          name: "concrate",
+      }, {
+          resource: "concrate",
           val: 10
-        }
-      ]
-    },
-    academy: {
-      cost: [
-        {
-          name: "wood",
+      }],
+      amount: 0,
+      priceRatio: 1.15
+  },
+  academy: {
+      cost: [{
+          resource: "wood",
           val: 50
-        },
-        {
-          name: "minerals",
+      }, {
+          resource: "minerals",
           val: 70
-        },
-        {
-          name: "science",
+      }, {
+          resource: "science",
           val: 100
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    observatory: {
-      cost: [
-        {
-          name: "iron",
+      priceRatio: 1.15
+  },
+  observatory: {
+      cost: [{
+          resource: "iron",
           val: 750
-        },
-        {
-          name: "science",
+      }, {
+          resource: "science",
           val: 1000
-        },
-        {
-          name: "slab",
+      }, {
+          resource: "slab",
           val: 35
-        },
-        {
-          name: "scaffold",
+      }, {
+          resource: "scaffold",
           val: 50
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.1
-    },
-    biolab: {
-      cost: [
-        {
-          name: "science",
+      priceRatio: 1.1
+  },
+  biolab: {
+      cost: [{
+          resource: "science",
           val: 1500
-        },
-        {
-          name: "slab",
+      }, {
+          resource: "slab",
           val: 100
-        },
-        {
-          name: "alloy",
+      }, {
+          resource: "alloy",
           val: 25
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.1
-    },
-    barn: {
-      cost: [
-        {
-          name: "wood",
+      priceRatio: 1.1
+  },
+  barn: {
+      cost: [{
+          resource: "wood",
           val: 50
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.75
-    },
-    warehouse: {
-      cost: [
-        {
-          name: "beam",
+      priceRatio: 1.75
+  },
+  warehouse: {
+      cost: [{
+          resource: "beam",
           val: 1.5
-        },
-        {
-          name: "slab",
+      }, {
+          resource: "slab",
           val: 2
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    spaceport: {
-      cost: [
-        {
-          name: "titanium",
+      priceRatio: 1.15
+  },
+  spaceport: {
+      cost: [{
+          resource: "titanium",
           val: 10000
-        },
-        {
-          name: "eludium",
+      }, {
+          resource: "eludium",
           val: 500
-        },
-        {
-          name: "kerosene",
+      }, {
+          resource: "kerosene",
           val: 1000
-        },
-        {
-          name: "blueprint",
+      }, {
+          resource: "blueprint",
           val: 500
-        },
-        {
-          name: "starchart",
+      }, {
+          resource: "starchart",
           val: 100000
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    harbor: {
-      cost: [
-        {
-          name: "slab",
+      priceRatio: 1.15
+  },
+  harbor: {
+      cost: [{
+          resource: "slab",
           val: 50
-        },
-        {
-          name: "plate",
+      }, {
+          resource: "plate",
           val: 75
-        },
-        {
-          name: "scaffold",
+      }, {
+          resource: "scaffold",
           val: 5
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    mine: {
-      cost: [
-        {
-          name: "wood",
+      priceRatio: 1.15
+  },
+  mine: {
+      cost: [{
+          resource: "wood",
           val: 100
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    quarry: {
-      cost: [
-        {
-          name: "slab",
+      priceRatio: 1.15
+  },
+  quarry: {
+      cost: [{
+          resource: "slab",
           val: 1000
-        },
-        {
-          name: "steel",
+      }, {
+          resource: "steel",
           val: 125
-        },
-        {
-          name: "scaffold",
+      }, {
+          resource: "scaffold",
           val: 50
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    smelter: {
-      cost: [
-        {
-          name: "minerals",
+      priceRatio: 1.15
+  },
+  smelter: {
+      cost: [{
+          resource: "minerals",
           val: 200
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    calciner: {
-      cost: [
-        {
-          name: "titanium",
+      priceRatio: 1.15
+  },
+  calciner: {
+      cost: [{
+          resource: "titanium",
           val: 15
-        },
-        {
-          name: "oil",
+      }, {
+          resource: "oil",
           val: 500
-        },
-        {
-          name: "steel",
+      }, {
+          resource: "steel",
           val: 100
-        },
-        {
-          name: "blueprint",
+      }, {
+          resource: "blueprint",
           val: 1
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    steamworks: {
-      cost: [
-        {
-          name: "steel",
+      priceRatio: 1.15
+  },
+  steamworks: {
+      cost: [{
+          resource: "steel",
           val: 65
-        },
-        {
-          name: "gear",
+      }, {
+          resource: "gear",
           val: 20
-        },
-        {
-          name: "blueprint",
+      }, {
+          resource: "blueprint",
           val: 1
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.25
-    },
-    magneto: {
-      cost: [
-        {
-          name: "gear",
+      priceRatio: 1.25
+  },
+  magneto: {
+      cost: [{
+          resource: "gear",
           val: 5
-        },
-        {
-          name: "alloy",
+      }, {
+          resource: "alloy",
           val: 10
-        },
-        {
-          name: "blueprint",
+      }, {
+          resource: "blueprint",
           val: 1
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.25
-    },
-    lumberMill: {
-      cost: [
-        {
-          name: "wood",
+      priceRatio: 1.25
+  },
+  lumberMill: {
+      cost: [{
+          resource: "wood",
           val: 100
-        },
-        {
-          name: "minerals",
+      }, {
+          resource: "minerals",
           val: 250
-        },
-        {
-          name: "iron",
+      }, {
+          resource: "iron",
           val: 50
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    oilWell: {
-      cost: [
-        {
-          name: "steel",
+      priceRatio: 1.15
+  },
+  oilWell: {
+      cost: [{
+          resource: "steel",
           val: 50
-        },
-        {
-          name: "gear",
+      }, {
+          resource: "gear",
           val: 25
-        },
-        {
-          name: "scaffold",
+      }, {
+          resource: "scaffold",
           val: 25
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    workshop: {
-      cost: [
-        {
-          name: "wood",
+      priceRatio: 1.15
+  },
+  workshop: {
+      cost: [{
+          resource: "wood",
           val: 100
-        },
-        {
-          name: "minerals",
+      }, {
+          resource: "minerals",
           val: 400
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    factory: {
-      cost: [
-        {
-          name: "titanium",
+      priceRatio: 1.15
+  },
+  factory: {
+      cost: [{
+          resource: "titanium",
           val: 2000
-        },
-        {
-          name: "plate",
+      }, {
+          resource: "plate",
           val: 2500
-        },
-        {
-          name: "concrate",
+      }, {
+          resource: "concrate",
           val: 15
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    reactor: {
-      cost: [
-        {
-          name: "titanium",
+      priceRatio: 1.15
+  },
+  reactor: {
+      cost: [{
+          resource: "titanium",
           val: 3500
-        },
-        {
-          name: "plate",
+      }, {
+          resource: "plate",
           val: 5000
-        },
-        {
-          name: "concrate",
+      }, {
+          resource: "concrate",
           val: 50
-        },
-        {
-          name: "blueprint",
+      }, {
+          resource: "blueprint",
           val: 25
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    accelerator: {
-      cost: [
-        {
-          name: "titanium",
+      priceRatio: 1.15
+  },
+  accelerator: {
+      cost: [{
+          resource: "titanium",
           val: 7500
-        },
-        {
-          name: "uranium",
+      }, {
+          resource: "uranium",
           val: 25
-        },
-        {
-          name: "concrate",
+      }, {
+          resource: "concrate",
           val: 125
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    tradepost: {
-      cost: [
-        {
-          name: "wood",
+      priceRatio: 1.15
+  },
+  tradepost: {
+      cost: [{
+          resource: "wood",
           val: 500
-        },
-        {
-          name: "minerals",
+      }, {
+          resource: "minerals",
           val: 200
-        },
-        {
-          name: "gold",
+      }, {
+          resource: "gold",
           val: 10
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    mint: {
-      cost: [
-        {
-          name: "minerals",
+      priceRatio: 1.15
+  },
+  mint: {
+      cost: [{
+          resource: "minerals",
           val: 5000
-        },
-        {
-          name: "gold",
+      }, {
+          resource: "gold",
           val: 500
-        },
-        {
-          name: "plate",
+      }, {
+          resource: "plate",
           val: 200
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    brewery: {
-      cost: [
-        {
-          name: "wood",
+      priceRatio: 1.15
+  },
+  brewery: {
+      cost: [{
+          resource: "wood",
           val: 1000
-        },
-        {
-          name: "culture",
+      }, {
+          resource: "culture",
           val: 750
-        },
-        {
-          name: "spice",
+      }, {
+          resource: "spice",
           val: 5
-        },
-        {
-          name: "parchment",
+      }, {
+          resource: "parchment",
           val: 375
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.5
-    },
-    amphitheatre: {
-      cost: [
-        {
-          name: "wood",
+      priceRatio: 1.5
+  },
+  amphitheatre: {
+      cost: [{
+          resource: "wood",
           val: 200
-        },
-        {
-          name: "minerals",
+      }, {
+          resource: "minerals",
           val: 1200
-        },
-        {
-          name: "parchment",
+      }, {
+          resource: "parchment",
           val: 3
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    broadcasttower: {
-      cost: [
-        {
-          name: "iron",
+      priceRatio: 1.15
+  },
+  broadcasttower: {
+      cost: [{
+          resource: "iron",
           val: 1250
-        },
-        {
-          name: "titanium",
+      }, {
+          resource: "titanium",
           val: 75
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.18
-    },
-    chapel: {
-      cost: [
-        {
-          name: "minerals",
+      priceRatio: 1.18
+  },
+  chapel: {
+      cost: [{
+          resource: "minerals",
           val: 2000
-        },
-        {
-          name: "culture",
+      }, {
+          resource: "culture",
           val: 250
-        },
-        {
-          name: "parchment",
+      }, {
+          resource: "parchment",
           val: 250
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    temple: {
-      cost: [
-        {
-          name: "gold",
+      priceRatio: 1.15
+  },
+  temple: {
+      cost: [{
+          resource: "gold",
           val: 50
-        },
-        {
-          name: "slab",
+      }, {
+          resource: "slab",
           val: 25
-        },
-        {
-          name: "plate",
+      }, {
+          resource: "plate",
           val: 15
-        },
-        {
-          name: "manuscript",
+      }, {
+          resource: "manuscript",
           val: 10
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    },
-    unicornPasture: {
-      cost: [
-        {
-          name: "unicorns",
+      priceRatio: 1.15
+  },
+  unicornPasture: {
+      cost: [{
+          resource: "unicorns",
           val: 2
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.75
-    },
-    ziggurat: {
-      cost: [
-        {
-          name: "scaffold",
+      priceRatio: 1.75
+  },
+  ziggurat: {
+      cost: [{
+          resource: "scaffold",
           val: 50
-        },
-        {
-          name: "blueprint",
+      }, {
+          resource: "blueprint",
           val: 1
-        },
-        {
-          name: "megalith",
+      }, {
+          resource: "megalith",
           val: 50
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.25
-    },
-    chronosphere: {
-      cost: [
-        {
-          name: "unobtainium",
+      priceRatio: 1.25
+  },
+  chronosphere: {
+      cost: [{
+          resource: "unobtainium",
           val: 2500
-        },
-        {
-          name: "science",
+      }, {
+          resource: "science",
           val: 250000
-        },
-        {
-          name: "timeCrystal",
+      }, {
+          resource: "timeCrystal",
           val: 1
-        },
-        {
-          name: "blueprint",
+      }, {
+          resource: "blueprint",
           val: 100
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.25
-    },
-    aiCore: {
-      cost: [
-        {
-          name: "antimatter",
+      priceRatio: 1.25
+  },
+  aiCore: {
+      cost: [{
+          resource: "antimatter",
           val: 125
-        },
-        {
-          name: "science",
+      }, {
+          resource: "science",
           val: 500000
-        }
-      ],
+      }],
       amount: 0,
-	priceRatio: 1.15
-    }
+      priceRatio: 1.15
   }
+}

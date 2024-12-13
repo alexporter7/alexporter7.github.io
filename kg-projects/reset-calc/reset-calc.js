@@ -1,4 +1,5 @@
 let data = {
+    wantedChronospheres: 0,
     resources: {
         craftable: {
             beam: {label: "beam", color: "white", amount: 0, carryOverType: "craftable", needed: 0},
@@ -69,7 +70,6 @@ function parseSaveImport() {
         let fileReader = new FileReader();
         fileReader.readAsText(saveFile, 'UTF-8');
         fileReader.onload = readerEvent => {
-            console.log(data)
             processSaveImport(JSON.parse(data.saveDecoder.decompressFromBase64(readerEvent.target.result)));
         };
     };
@@ -83,20 +83,37 @@ function processSaveImport(gameData) {
                 data.resources[getResourceType(resource.name)][resource.name].amount = Math.round(resource.value)
         }
     );
-    gameData.science.techs.forEach(
-        (tech) => {
-            if(tech.researched)
-                document.getElementById(tech.name).checked = true
-        }
-    );
-    gameData.workshop.upgrades.forEach(
-        (upgrade) => {
-            if(upgrade.researched)
-                document.getElementById(upgrade.name).checked = true
+    gameData.prestige.perks.forEach(
+        (perk) => {
+            if(perk.researched) {
+                document.getElementById(perk.name).checked = true;
+                data.metaphysics[perk.name].alreadyPurchased = true;
+            }
         }
     )
-    document.getElementById("metaphysics-list-checkbox").innerHTML = generateMetaphysicsList(gameData.prestige.perks);
+    if(document.getElementById("import-option-tech").checked)
+        gameData.science.techs.forEach(
+            (tech) => {
+                if(tech.researched)
+                    document.getElementById(tech.name).checked = true
+            }
+        );
+    if(document.getElementById("import-option-upgrade").checked)
+        gameData.workshop.upgrades.forEach(
+            (upgrade) => {
+                if(upgrade.researched)
+                    document.getElementById(upgrade.name).checked = true
+            }
+        );
+    if(document.getElementById("import-option-building").checked)
+        gameData.buildings.forEach(
+            (building) => {
+                if(data.buildings[building.name])
+                    data.buildings[building.name].amount = building.val
+            }
+        );
     calculateResourceCost();
+    generateBuildingsList();
     rebuildTables();
 }
 
@@ -118,6 +135,12 @@ function updateBuildingAmount(building, amount) {
     rebuildTables();
 }
 
+function updateWantedChronospheres(amount) {
+    data.wantedChronospheres += amount;
+    document.getElementById("wantedChronospheres").innerHTML = `chronospheres (${data.wantedChronospheres})`
+    rebuildTables();
+}
+
 /*
  * Mappings
  */
@@ -133,9 +156,9 @@ function getLabel(key) {
 function getCarryOverAmount(resource) {
     switch(resource.carryOverType) {
         case "non-craftable":
-            return Math.round(resource.amount * 0.015 * data.buildings.chronosphere.amount);
+            return Math.round(resource.amount * 0.015 * data.wantedChronospheres);
         case "craftable":
-            return Math.round(Math.sqrt(resource.amount) * 1.5 * data.buildings.chronosphere.amount);
+            return Math.round(Math.sqrt(resource.amount) * 1.5 * data.wantedChronospheres);
         case "persistent":
             return resource.amount;
         case "none":
@@ -144,15 +167,15 @@ function getCarryOverAmount(resource) {
 }
 
 function calculatePreResetAmountNeeded(resourceObject) {
-    if(buildings.chronosphere.amount == 0)
+    if(data.wantedChronospheres == 0)
         return 0;
     let resourceNeed = data.resources[getResourceType(resourceObject.resourceName)][resourceObject.resourceName].needed;
     let carryOverType = data.resources[getResourceType(resourceObject.resourceName)][resourceObject.resourceName].carryOverType;
     switch(carryOverType) {
         case "non-craftable":
-            return Math.round(resourceNeed / Number(data.buildings.chronosphere.amount) / 0.015);
+            return Math.round(resourceNeed / Number(data.wantedChronospheres) / 0.015);
         case "craftable":
-            return (resourceNeed / Number(data.buildings.chronosphere.amount) / 1.5)**2;
+            return (resourceNeed / Number(data.wantedChronospheres) / 1.5)**2;
         case "persistent":
             return "N/A";
         case "none":
@@ -176,6 +199,8 @@ function getCostString(techCost) {
 }
 
 function getShortNumber(number) {
+    if(number == "N/A")
+        return "N/A"
     return Intl.NumberFormat('en-US', {
         notation: "compact",
         maximumFractionDigits: 2
@@ -223,6 +248,18 @@ function calculateResourceCost() {
         Object.keys(data.resources[resourceType]).forEach((resource) => data.resources[resourceType][resource].needed = 0))
     Object.keys(resourcesNeeded).forEach((resource) => data.resources[getResourceType(resource)][resource].needed += resourcesNeeded[resource])
     rebuildTables()
+}
+
+function calculateCumulativeBuildingCost(building, amount) {
+    
+}
+
+function calculateTotalCostReduction() {
+    let totalCostReduction = 0;
+    Object.keys(data.metaphysics).forEach(
+        (perk) => totalCostReduction += (data.metaphysics[perk].priceRatioReduction) ? data.metaphysics[perk].priceRatioReduction : 0
+    )
+    return totalCostReduction;
 }
 
 /*
@@ -359,12 +396,39 @@ function generateMetaphysicsList() {
 }
 
 function generateBuildingsList() {
+    document.getElementById("building-left-col").innerHTML = "";
+    document.getElementById("building-right-col").innerHTML = "";
+    let buildingColumns  = { column1: [], column2: [] }
     let buildingsListHtml = "";
     buildingsListHtml += `
+    <h6>Chronospheres When Reset</h6>
     <div class="btn-group" role="group" aria-label="testLabel">
-        <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('chronosphere', -1)"> - </button>
-        <button type="button" class="btn btn-outline-light" id="chronosphere">chronospheres (${data.buildings.chronosphere.amount})</button>
-        <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('chronosphere', 1)"> + </button>
+        <button type="button" class="btn btn-outline-light" onclick="updateWantedChronospheres(-1)"> - </button>
+        <button type="button" class="btn btn-outline-light" id="wantedChronospheres">chronospheres (${data.wantedChronospheres})</button>
+        <button type="button" class="btn btn-outline-light" onclick="updateWantedChronospheres(1)"> + </button>
+    </div>
+    <div class="row pt-3">
+        <h6>Buildings Wanted</h6>
     </div>`;
+    for(let i = 0; i < Object.keys(data.buildings).length; i++) {
+        if(i % 2 == 1)
+            buildingColumns.column1.push(generateBuildingButtonGroup(Object.keys(data.buildings)[i]));
+        else
+            buildingColumns.column2.push(generateBuildingButtonGroup(Object.keys(data.buildings)[i]));
+    }
+
+    buildingColumns.column1.forEach( (buttonGroup) => document.getElementById("building-left-col").innerHTML += buttonGroup)
+    buildingColumns.column2.forEach( (buttonGroup) => document.getElementById("building-right-col").innerHTML += buttonGroup)
+    
     return buildingsListHtml;
+}
+
+function generateBuildingButtonGroup(building) {
+    return `
+    <div class="btn-group mb-1" role="group" aria-label="testLabel">
+        <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('${building}', -1)"> - </button>
+        <button type="button" class="btn btn-outline-light" id="${building}">${building} (${data.buildings[building].amount})</button>
+        <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('${building}', 1)"> + </button>
+    </div>
+    `
 }
