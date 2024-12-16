@@ -88,6 +88,7 @@ function processSaveImport(gameData) {
             if(perk.researched) {
                 document.getElementById(perk.name).checked = true;
                 data.metaphysics[perk.name].alreadyPurchased = true;
+                data.metaphysics[perk.name].researched = true;
             }
         }
     )
@@ -132,7 +133,7 @@ function updateNeededAmount(resourceType, resource) {
 function updateBuildingAmount(building, amount) {
     data.buildings[building].amount += Number(amount);
     document.getElementById(building).innerHTML = `${building} (${data.buildings[building].amount})`
-    rebuildTables();
+    calculateResourceCost();
 }
 
 function updateWantedChronospheres(amount) {
@@ -242,22 +243,41 @@ function calculateResourceCost() {
 
             }
         }
-    )
-
+    );
+    /* Buildings */
+    Object.keys(data.buildings).forEach(
+        (building) => {
+            if(data.buildings[building].amount > 0)
+                calculateCumulativeBuildingCost(data.buildings[building], data.buildings[building].amount).forEach(
+                    (resource) => resourcesNeeded[resource.name] = Math.round(resource.val)
+                )
+            
+        }
+    );
+    console.log(resourcesNeeded)
     Object.keys(data.resources).forEach((resourceType) => 
         Object.keys(data.resources[resourceType]).forEach((resource) => data.resources[resourceType][resource].needed = 0))
     Object.keys(resourcesNeeded).forEach((resource) => data.resources[getResourceType(resource)][resource].needed += resourcesNeeded[resource])
-    rebuildTables()
+    rebuildTables();
 }
 
 function calculateCumulativeBuildingCost(building, amount) {
-    
+    let totalResourceCost = [];
+    let adjustedPriceRatio = building.priceRatio - calculateTotalCostReduction();
+    building.cost.forEach(
+        (resource) => totalResourceCost.push({
+            name: resource.resource,
+            val: resource.val * ((adjustedPriceRatio)**amount - 1)/(adjustedPriceRatio - 1)
+        })
+    );
+    return totalResourceCost;
 }
+//200 * (1.15^10 - 1)/(1.15 - 1)
 
 function calculateTotalCostReduction() {
     let totalCostReduction = 0;
     Object.keys(data.metaphysics).forEach(
-        (perk) => totalCostReduction += (data.metaphysics[perk].priceRatioReduction) ? data.metaphysics[perk].priceRatioReduction : 0
+        (perk) => totalCostReduction += (data.metaphysics[perk].priceRatioReduction && data.metaphysics[perk].researched) ? data.metaphysics[perk].priceRatioReduction : 0
     )
     return totalCostReduction;
 }
