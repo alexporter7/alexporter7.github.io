@@ -253,8 +253,12 @@ function calculateResourceCost() {
     Object.keys(data.buildings).forEach(
         (building) => {
             if(data.buildings[building].amount > 0)
-                calculateCumulativeBuildingCost(data.buildings[building], data.buildings[building].amount).forEach(
-                    (resource) => resourcesNeeded[resource.name] = Math.round(resource.val)
+                calculateCumulativeBuildingCost(data.buildings[building]).forEach(
+                    (resource) => {
+                        if(!resourcesNeeded[resource.name])
+                            resourcesNeeded[resource.name] = 0;
+                        resourcesNeeded[resource.name] += Math.round(resource.val)
+                    }
                 )
             
         }
@@ -265,7 +269,8 @@ function calculateResourceCost() {
     rebuildTables();
 }
 
-function calculateCumulativeBuildingCost(building, amount) {
+function calculateCumulativeBuildingCost(building) {
+    let amount = building.amount
     let totalResourceCost = [];
     let adjustedPriceRatio = building.priceRatio - calculateTotalCostReduction();
     building.cost.forEach(
@@ -276,7 +281,6 @@ function calculateCumulativeBuildingCost(building, amount) {
     );
     return totalResourceCost;
 }
-//200 * (1.15^10 - 1)/(1.15 - 1)
 
 function calculateTotalCostReduction() {
     let totalCostReduction = 0;
@@ -447,23 +451,6 @@ function generateBuildingsList() {
     return buildingsListHtml;
 }
 
-// function generateBuildingButtonGroup(building) {
-//     return `
-//     <div class="btn-group mb-1" role="group" aria-label="testLabel">
-//         <button type="button" class="btn btn-outline-light" onclick="incrementBuildingAmount('${building}', -1)"> - </button>
-//         <button type="button" class="btn btn-outline-light" id="${building}">${building} (${data.buildings[building].amount})</button>
-//         <button type="button" class="btn btn-outline-light" onclick="incrementBuildingAmount('${building}', 1)"> + </button>
-//     </div>
-//     `
-// }
-
-{/* <div class="input-group">
-<button type="button" class="btn btn-outline-light"> - </button>
-<span class="input-group-text" id="chronosphere-test-input-label">Chronospheres</span>
-<input type="text" class="form-control" id="chronosphere-test-input" aria-describedby="chronosphere-test-input-label">
-<button type="button" class="btn btn-outline-light"> + </button>
-</div>
-</div> */}
 function generateBuildingButtonGroup(building) {
     return `
     <div class="input-group">
