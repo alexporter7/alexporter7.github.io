@@ -115,7 +115,6 @@ function processSaveImport(gameData) {
         );
     calculateResourceCost();
     generateBuildingsList();
-    rebuildTables();
 }
 
 function exportCalcData() {
@@ -130,9 +129,15 @@ function updateNeededAmount(resourceType, resource) {
     rebuildTables();
 }
 
-function updateBuildingAmount(building, amount) {
+function incrementBuildingAmount(building, amount) {
     data.buildings[building].amount += Number(amount);
-    document.getElementById(building).innerHTML = `${building} (${data.buildings[building].amount})`
+    document.getElementById(building).value = data.buildings[building].amount;
+    calculateResourceCost();
+}
+
+function setBuildingAmount(building) {
+    data.buildings[building].amount = Number(document.getElementById(building).value);
+    generateBuildingsList();
     calculateResourceCost();
 }
 
@@ -254,7 +259,6 @@ function calculateResourceCost() {
             
         }
     );
-    console.log(resourcesNeeded)
     Object.keys(data.resources).forEach((resourceType) => 
         Object.keys(data.resources[resourceType]).forEach((resource) => data.resources[resourceType][resource].needed = 0))
     Object.keys(resourcesNeeded).forEach((resource) => data.resources[getResourceType(resource)][resource].needed += resourcesNeeded[resource])
@@ -443,12 +447,31 @@ function generateBuildingsList() {
     return buildingsListHtml;
 }
 
+// function generateBuildingButtonGroup(building) {
+//     return `
+//     <div class="btn-group mb-1" role="group" aria-label="testLabel">
+//         <button type="button" class="btn btn-outline-light" onclick="incrementBuildingAmount('${building}', -1)"> - </button>
+//         <button type="button" class="btn btn-outline-light" id="${building}">${building} (${data.buildings[building].amount})</button>
+//         <button type="button" class="btn btn-outline-light" onclick="incrementBuildingAmount('${building}', 1)"> + </button>
+//     </div>
+//     `
+// }
+
+{/* <div class="input-group">
+<button type="button" class="btn btn-outline-light"> - </button>
+<span class="input-group-text" id="chronosphere-test-input-label">Chronospheres</span>
+<input type="text" class="form-control" id="chronosphere-test-input" aria-describedby="chronosphere-test-input-label">
+<button type="button" class="btn btn-outline-light"> + </button>
+</div>
+</div> */}
 function generateBuildingButtonGroup(building) {
     return `
-    <div class="btn-group mb-1" role="group" aria-label="testLabel">
-        <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('${building}', -1)"> - </button>
-        <button type="button" class="btn btn-outline-light" id="${building}">${building} (${data.buildings[building].amount})</button>
-        <button type="button" class="btn btn-outline-light" onclick="updateBuildingAmount('${building}', 1)"> + </button>
+    <div class="input-group">
+        <button type="button" class="btn btn-outline-light" onclick="incrementBuildingAmount('${building}', -1)"> - </button>
+        <span class="input-group-text" id="${building}-input-label">${building}</span>
+        <input type="text" class="form-control" value="${data.buildings[building].amount}" 
+            id="${building}" aria-describedby="${building}-input-label" onchange="setBuildingAmount('${building}')">
+        <button type="button" class="btn btn-outline-light" onclick="incrementBuildingAmount('${building}', 1)"> + </button>
     </div>
     `
 }
