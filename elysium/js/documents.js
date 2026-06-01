@@ -158,3 +158,79 @@ if (document.readyState === 'loading') {
 } else {
     bootDocumentsPage();
 }
+
+// =============================================
+// Real Lore Document Viewer (from extracted .md files)
+// =============================================
+async function showRealDocument(filename, title, source) {
+  const modal = document.getElementById('article-modal');
+  if (!modal) return;
+
+  modal.innerHTML = `
+    <div class="max-w-3xl w-full border border-white/20 bg-[#0a0a0f] p-8 relative max-h-[85vh] overflow-auto">
+      <button onclick="hideArticleModal()" class="absolute top-4 right-4 text-[#606080] hover:text-white text-2xl leading-none">&times;</button>
+      
+      <div class="mb-4">
+        <div class="text-xs text-[#ff00aa] tracking-widest">${source}</div>
+        <h2 class="font-['Orbitron'] text-2xl font-bold tracking-[-0.5px] mt-1">${title}</h2>
+      </div>
+
+      <div id="document-content" class="prose prose-invert text-[#c0c0d0] text-sm leading-relaxed">
+        Loading document...
+      </div>
+    </div>
+  `;
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+
+  try {
+    const response = await fetch(`lore/${filename}`);
+    if (!response.ok) throw new Error('File not found');
+    
+    let text = await response.text();
+    
+    // Simple markdown → HTML
+    text = text
+      .replace(/^### (.*$)/gim, '<h3 class="text-[#ffaa00] mt-6 mb-2">$1</h3>')
+      .replace(/^## (.*$)/gim, '<h2 class="text-[#c026ff] mt-6 mb-2">$1</h2>')
+      .replace(/^# (.*$)/gim, '<h1 class="text-xl mt-2 mb-4">$1</h1>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n\n/g, '</p><p class="mb-3">');
+
+    document.getElementById('document-content').innerHTML = `<p>${text}</p>`;
+  } catch (err) {
+    const isFileProtocol = window.location.protocol === 'file:';
+    
+    let errorHTML = `
+      <p class="text-red-400 font-semibold">Failed to load document.</p>
+      <p class="text-xs mt-2 text-[#808090]">Tried to fetch: <code>lore/${filename}</code></p>
+    `;
+
+    if (isFileProtocol) {
+      errorHTML += `
+        <div class="mt-4 p-4 bg-[#1a1a22] border border-[#ffaa00]/40 rounded text-sm">
+          <p class="text-[#ffaa00] font-medium mb-2">This is a known limitation.</p>
+          <p class="text-[#c0c0d0] mb-3">
+            You're opening the file directly from your computer (<code>file://</code> protocol). 
+            Modern browsers block <code>fetch()</code> requests in this mode for security reasons.
+          </p>
+          <p class="text-[#c0c0d0] font-medium mb-1">Quick fixes:</p>
+          <ul class="text-[#a0a0b0] text-xs space-y-1 list-disc pl-4">
+            <li><strong>Easiest:</strong> Install the "Live Server" extension in VS Code and right-click → "Open with Live Server"</li>
+            <li>Run this command in the Elysium folder: <code class="bg-black px-1">python -m http.server 8000</code> then visit <code>http://localhost:8000/documents.html</code></li>
+            <li>Or use <code>npx serve</code> if you have Node.js installed</li>
+          </ul>
+        </div>
+      `;
+    } else {
+      errorHTML += `
+        <p class="text-xs mt-3 text-[#808090]">
+          Make sure the <code>lore</code> folder exists and contains the .md files.
+        </p>
+      `;
+    }
+
+    document.getElementById('document-content').innerHTML = errorHTML;
+  }
+}

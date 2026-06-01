@@ -54,11 +54,52 @@
             </div>
             <h1 class="font-['Orbitron'] text-6xl font-bold tracking-[-2px]">ELYSIUM ARCHIVES</h1>
             <p class="mt-3 max-w-2xl text-[#a0a0c0]">
-                Official records, press releases, and investigative reporting from the city of Elysium.<br>
-                <span class="text-[#606080]">All documents are property of the Elysium Council unless otherwise noted.</span>
+                Official records, press releases, and constitutional documents from the City of Elysium.<br>
+                <span class="text-[#606080]">Sourced from the High Mayor's Office, the Council, and various municipal departments.</span>
             </p>
         </div>
     </header>
+
+    <!-- GOVERNMENT STRUCTURE OVERVIEW -->
+    <section class="max-w-6xl mx-auto px-6 py-10 border-b border-white/10">
+        <div class="mb-8">
+            <div class="text-[#c026ff] text-xs tracking-[3px] mb-1">FOUNDATIONAL DOCUMENTS</div>
+            <h2 class="font-['Orbitron'] text-3xl tracking-[-1px]">GOVERNMENT STRUCTURE OF ELYSIUM</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 text-sm">
+            <div class="border border-white/10 bg-[#0a0a0f] p-6">
+                <h3 class="text-[#c026ff] font-bold mb-3 tracking-wide">EXECUTIVE BRANCH</h3>
+                <ul class="space-y-2 text-[#b0b0d0]">
+                    <li><strong>Office of the High Mayor</strong> — Citywide policy direction, emergency coordination, and inter-district operations.</li>
+                    <li><strong>Deputy Mayor</strong> — Manages daily government functions and ensures administrative continuity.</li>
+                </ul>
+            </div>
+            <div class="border border-white/10 bg-[#0a0a0f] p-6">
+                <h3 class="text-[#ffaa00] font-bold mb-3 tracking-wide">LEGISLATIVE BRANCH</h3>
+                <ul class="space-y-2 text-[#b0b0d0]">
+                    <li><strong>The Island Council</strong> — Seven district representatives (one per district). Responsible for legislation, budgets, and public inquiries.</li>
+                </ul>
+            </div>
+            <div class="border border-white/10 bg-[#0a0a0f] p-6">
+                <h3 class="text-[#39ff14] font-bold mb-3 tracking-wide">JUDICIAL BRANCH</h3>
+                <ul class="space-y-2 text-[#b0b0d0]">
+                    <li><strong>The High Tribunal</strong> — Independent judicial body with district courts to adjudicate disputes and uphold civic order.</li>
+                </ul>
+            </div>
+            <div class="border border-white/10 bg-[#0a0a0f] p-6">
+                <h3 class="text-[#00f3ff] font-bold mb-3 tracking-wide">PUBLIC SAFETY &amp; OVERSIGHT</h3>
+                <ul class="space-y-2 text-[#b0b0d0]">
+                    <li><strong>Elysium City Guard</strong> — Enforcement, organized crime, and emergency response.</li>
+                    <li><strong>Internal Integrity Commission</strong> — Independent body investigating corruption and reviewing public contracts.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-xs text-[#606080] mt-4">
+            Structure established May 2026 per the Constitution of the City of Elysium. 
+            Click the cards below to read the original official documents.
+        </p>
+    </section>
 
     <!-- FILTER TABS -->
     <div class="max-w-6xl mx-auto px-6 pt-8">
@@ -69,22 +110,44 @@
             <button onclick="filterArticles('government')" class="filter-btn px-5 py-2 text-sm border border-white/20 hover:border-[#c026ff]" data-filter="government">
                 <span class="text-[#c026ff]">●</span> GOVERNMENT PRESS RELEASES
             </button>
-            <button onclick="filterArticles('district')" class="filter-btn px-5 py-2 text-sm border border-white/20 hover:border-[#ffaa00]" data-filter="district">
+            <button onclick="filterArticles('district')" class="filter-btn px-5 py-2 text-sm border border-white/20 hover:border-[#ffaa00]" data-filter="press">
                 <span class="text-[#ffaa00]">●</span> DISTRICT PRESS RELEASES
             </button>
-            <button onclick="filterArticles('newspaper')" class="filter-btn px-5 py-2 text-sm border border-white/20 hover:border-[#39ff14]" data-filter="newspaper">
-                <span class="text-[#39ff14]">●</span> NEWSPAPERS
+            <button onclick="filterArticles('newspaper')" class="filter-btn px-5 py-2 text-sm border border-white/20 hover:border-[#00f3ff]" data-filter="construction">
+                <span class="text-[#00f3ff]">●</span> NEWSPAPERS
             </button>
         </div>
     </div>
 
-    <!-- GOVERNMENT PRESS RELEASES -->
+    <!-- GOVERNMENT & CONSTITUTIONAL DOCUMENTS -->
     <section id="government-section" class="max-w-6xl mx-auto px-6 py-10">
         <div class="flex items-center gap-3 mb-6">
             <span class="text-[#c026ff]">●</span>
-            <h2 class="font-['Orbitron'] text-2xl tracking-[-0.5px]">GOVERNMENT PRESS RELEASES</h2>
+            <h2 class="font-['Orbitron'] text-2xl tracking-[-0.5px]">GOVERNMENT &amp; CONSTITUTIONAL DOCUMENTS</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="government-articles"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Real document cards -->
+            <div onclick="showRealDocument('01_Establishment_of_Government.md', 'Formal Establishment of Elysium Government', 'High Mayor’s Office')" 
+                 class="border border-white/10 bg-[#0a0a0f] p-5 hover:border-[#c026ff] cursor-pointer transition-all group">
+                <div class="flex justify-between items-start mb-1">
+                    <div class="text-xs text-[#606080]">May 2026 • High Mayor’s Office</div>
+                    <div class="text-[10px] px-2 py-0.5 bg-[#c026ff]/10 text-[#c026ff] rounded group-hover:bg-[#c026ff]/20">Original</div>
+                </div>
+                <div class="font-bold text-lg mb-2">Formal Establishment of Elysium’s New Government Structure</div>
+                <p class="text-sm text-[#9090b0]">Official announcement of the centralized governance framework, including the High Mayor, Island Council, High Tribunal, and City Guard.</p>
+            </div>
+
+            <div onclick="showRealDocument('02_Ratification_of_Constitution.md', 'Ratification of the Elysium Constitution', 'High Mayor’s Office')" 
+                 class="border border-white/10 bg-[#0a0a0f] p-5 hover:border-[#c026ff] cursor-pointer transition-all group">
+                <div class="flex justify-between items-start mb-1">
+                    <div class="text-xs text-[#606080]">May 1, 2026 • High Mayor’s Office</div>
+                    <div class="text-[10px] px-2 py-0.5 bg-[#c026ff]/10 text-[#c026ff] rounded group-hover:bg-[#c026ff]/20">Original</div>
+                </div>
+                <div class="font-bold text-lg mb-2">Formal Ratification of the Constitution of Elysium</div>
+                <p class="text-sm text-[#9090b0]">The foundational legal document establishing sovereign municipal governance, separation of powers, and civil rights for the city.</p>
+            </div>
+        </div>
     </section>
 
     <!-- DISTRICT PRESS RELEASES -->

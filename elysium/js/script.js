@@ -213,6 +213,9 @@ function initHoloMap() {
   
   window.addEventListener('resize', resize);
   resize();
+
+  // Extra safety: re-resize shortly after load in case of layout shifts
+  setTimeout(resize, 150);
   
   // Node data for the map - 7 districts + central hub
   const nodes = [
@@ -241,6 +244,19 @@ function initHoloMap() {
     mouseX = (e.clientX - rect.left) / rect.width;
     mouseY = (e.clientY - rect.top) / rect.height;
   });
+  
+  function getNodeColor(type) {
+    switch(type) {
+      case 'aurelian': return '#c026ff';
+      case 'brass': return '#ffaa00';
+      case 'tide': return '#00f3ff';
+      case 'verdance': return '#39ff14';
+      case 'grey': return '#708090';
+      case 'highspire': return '#ff00aa';
+      case 'blackreach': return '#aa00ff';
+      default: return '#334455';
+    }
+  }
   
   function draw() {
     ctx.clearRect(0, 0, width, height);
@@ -340,32 +356,25 @@ function initHoloMap() {
     requestAnimationFrame(draw);
   }
   
-  function getNodeColor(type) {
-    switch(type) {
-      case 'aurelian': return '#c026ff';
-      case 'brass': return '#ffaa00';
-      case 'tide': return '#00f3ff';
-      case 'verdance': return '#39ff14';
-      case 'grey': return '#708090';
-      case 'highspire': return '#ff00aa';
-      case 'blackreach': return '#aa00ff';
-      default: return '#334455';
-    }
-  }
-  
-  // Click interaction on nodes
+  // Click interaction on nodes - improved matching
   canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
     const clickX = (e.clientX - rect.left) / rect.width;
     const clickY = (e.clientY - rect.top) / rect.height;
     
-    nodes.forEach((node, index) => {
+    nodes.forEach((node) => {
+      if (!node.label) return;
+      
       const dist = Math.hypot(node.x - clickX, node.y - clickY);
-      if (dist < 0.08 && node.label) {
-        // Find matching district and open modal
-        const districtIndex = districts.findIndex(d => 
-          d.name.toLowerCase().includes(node.label.toLowerCase().replace(" ", ""))
-        );
+      if (dist < 0.09) {
+        // Robust matching between map node labels and district names
+        const nodeName = node.label.toLowerCase().replace(/\s+/g, '');
+        
+        const districtIndex = districts.findIndex(d => {
+          const districtName = d.name.toLowerCase().replace(/\s+/g, '');
+          return districtName === nodeName || districtName.includes(nodeName) || nodeName.includes(districtName);
+        });
+        
         if (districtIndex !== -1) {
           showDistrictModal(districtIndex);
         }
