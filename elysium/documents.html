@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHIVES // ELYSIUM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&amp;family=Rajdhani:wght@300;400;500;600&amp;family=VT323&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#0a0a0f] text-[#e0e0ff] overflow-x-hidden">
+    <!-- SCANLINE OVERLAY -->
+    <div class="scanlines"></div>
+    
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/90 backdrop-blur-lg border-b border-[#00f3ff]/30">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-gradient-to-br from-[#00f3ff] to-[#ff00aa] flex items-center justify-center">
+                        <span class="font-bold text-black text-xl tracking-[-2px]">E</span>
+                    </div>
+                    <div>
+                        <span class="font-['Orbitron'] text-2xl font-bold tracking-[3px] text-white">ELYSIUM</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-widest">
+                <a href="index.html#the-city" class="nav-link hover:text-[#00f3ff] transition-colors">THE CITY</a>
+                <a href="index.html#districts" class="nav-link hover:text-[#00f3ff] transition-colors">DISTRICTS</a>
+                <a href="index.html#the-grid" class="nav-link hover:text-[#00f3ff] transition-colors">THE GRID</a>
+                <a href="documents.html" class="nav-link text-[#ff00aa]">ARCHIVES</a>
+                <a href="index.html#access" class="nav-link hover:text-[#00f3ff] transition-colors">ACCESS</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="index.html" 
+                   class="px-5 py-2 text-xs font-bold tracking-[2px] border border-[#00f3ff] text-[#00f3ff] hover:bg-[#00f3ff] hover:text-black transition-all duration-200">
+                    RETURN TO CITY
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <header class="pt-20 pb-12 border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="h-px w-8 bg-[#ff00aa]"></div>
+                <span class="text-[#ff00aa] text-xs tracking-[4px]">CLASSIFIED ARCHIVES</span>
+            </div>
+            <h1 class="font-['Orbitron'] text-6xl font-bold tracking-[-2px]">ELYSIUM ARCHIVES</h1>
+            <p class="mt-3 max-w-2xl text-[#a0a0c0]">
+                Official records, press releases, and investigative reporting from the city of Elysium.<br>
+                <span class="text-[#606080]">All documents are property of the Elysium Council unless otherwise noted.</span>
+            </p>
+        </div>
+    </header>
+
+    <!-- FILTER TABS -->
+    <div class="max-w-6xl mx-auto px-6 pt-8">
+        <div class="flex flex-wrap gap-2" id="filter-tabs">
+            <button onclick="filterArticles('all')" class="filter-btn active px-5 py-2 text-sm border border-white/20 hover:border-white/40" data-filter="all">
+                ALL RECORDS
+            </button>
+            <button onclick="filterArticles('government')" class="filter-btn px-5 py-2 text-sm border border-white/20 hover:border-[#c026ff]" data-filter="government">
+                <span class="text-[#c026ff]">●</span> GOVERNMENT PRESS RELEASES
+            </button>
+            <button onclick="filterArticles('district')" class="filter-btn px-5 py-2 text-sm border border-white/20 hover:border-[#ffaa00]" data-filter="district">
+                <span class="text-[#ffaa00]">●</span> DISTRICT PRESS RELEASES
+            </button>
+            <button onclick="filterArticles('newspaper')" class="filter-btn px-5 py-2 text-sm border border-white/20 hover:border-[#39ff14]" data-filter="newspaper">
+                <span class="text-[#39ff14]">●</span> NEWSPAPERS
+            </button>
+        </div>
+    </div>
+
+    <!-- GOVERNMENT PRESS RELEASES -->
+    <section id="government-section" class="max-w-6xl mx-auto px-6 py-10">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="text-[#c026ff]">●</span>
+            <h2 class="font-['Orbitron'] text-2xl tracking-[-0.5px]">GOVERNMENT PRESS RELEASES</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="government-articles"></div>
+    </section>
+
+    <!-- DISTRICT PRESS RELEASES -->
+    <section id="district-section" class="max-w-6xl mx-auto px-6 py-10 border-t border-white/10">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="text-[#ffaa00]">●</span>
+            <h2 class="font-['Orbitron'] text-2xl tracking-[-0.5px]">DISTRICT PRESS RELEASES</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="district-articles"></div>
+    </section>
+
+    <!-- NEWSPAPERS -->
+    <section id="newspaper-section" class="max-w-6xl mx-auto px-6 py-10 border-t border-white/10">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="text-[#39ff14]">●</span>
+            <h2 class="font-['Orbitron'] text-2xl tracking-[-0.5px]">NEWSPAPERS &amp; INVESTIGATIVE REPORTING</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="newspaper-articles"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-8 text-xs text-[#505070]">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>© 2026 ELYSIUM CITY ARCHIVES — AUTHORIZED ACCESS ONLY</div>
+            <div class="font-mono">v4.7.3 // NEON PROTOCOL</div>
+        </div>
+    </footer>
+
+    <!-- ARTICLE MODAL -->
+    <div id="article-modal" onclick="if (event.target.id === 'article-modal') hideArticleModal()" 
+         class="hidden fixed inset-0 z-[110] bg-black/90 flex items-center justify-center p-4">
+        <!-- Populated dynamically via JS -->
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/documents.js"></script>
+</body>
+</html>

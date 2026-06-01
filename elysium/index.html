@@ -31,7 +31,7 @@
                 <a href="#the-city" class="nav-link hover:text-[#00f3ff] transition-colors">THE CITY</a>
                 <a href="#districts" class="nav-link hover:text-[#00f3ff] transition-colors">DISTRICTS</a>
                 <a href="#the-grid" class="nav-link hover:text-[#00f3ff] transition-colors">THE GRID</a>
-                <a href="#lore" class="nav-link hover:text-[#00f3ff] transition-colors">LORE</a>
+                <a href="documents.html" class="nav-link hover:text-[#00f3ff] transition-colors">ARCHIVES</a>
                 <a href="#access" class="nav-link hover:text-[#00f3ff] transition-colors">ACCESS</a>
             </div>
             
@@ -80,8 +80,8 @@
             </div>
             
             <p class="max-w-md mx-auto text-lg text-[#a0a0c0] mb-10">
-                A cyberpunk megacity rising from the void.<br>
-                The most ambitious Minecraft Realm ever built.
+                A cyberpunk city rising from the void.<br>
+                The most ambitious city ever built inside a Minecraft Realm.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -118,8 +118,8 @@
                 <h2 class="font-['Orbitron'] text-6xl font-bold tracking-[-2px] leading-none">THE LAST<br>NEON SANCTUARY</h2>
             </div>
             <div class="md:col-span-7 text-[#a0a0c0] text-[15px] leading-relaxed space-y-5">
-                <p>Elysium is not just a Minecraft city. It is a living, breathing cyberpunk megastructure built across multiple dimensions. Towering spires pierce the sky. Holographic advertisements flicker in the rain. The streets below pulse with redstone and ambition.</p>
-                <p>Here, the line between survival and spectacle has been erased. Players don't just build — they live in a neon-drenched world where every block tells a story of power, rebellion, and beauty.</p>
+                <p>Elysium is not just a Minecraft city. It is a living, breathing cyberpunk megastructure built across multiple dimensions within the Realm. Towering spires pierce the sky. Holographic advertisements flicker in the rain. The streets below pulse with redstone and ambition.</p>
+                <p>Here, the line between survival and spectacle has been erased. Citizens don't just build — they live in a neon-drenched world where every block tells a story of power, rebellion, and beauty.</p>
             </div>
         </div>
     </section>
@@ -322,19 +322,22 @@
         </div>
     </section>
 
-    <!-- THE HERALD - Press Releases & Newspapers -->
-    <section id="herald" class="bg-[#0f0f16] border-y border-white/10 py-16">
+    <!-- LATEST DISPATCHES - Teaser linking to full Archives -->
+    <section class="bg-[#0f0f16] border-y border-white/10 py-14">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
                 <div>
-                    <div class="text-[#ff00aa] text-xs tracking-[4px]">PUBLIC RECORD • EST 2024</div>
-                    <h3 class="font-['Orbitron'] text-5xl font-bold tracking-[-1px]">THE HERALD</h3>
+                    <div class="text-[#ff00aa] text-xs tracking-[4px]">PUBLIC RECORD</div>
+                    <h3 class="font-['Orbitron'] text-4xl font-bold tracking-[-1px]">LATEST DISPATCHES</h3>
                 </div>
-                <p class="text-sm text-[#707090] max-w-md mt-2 md:mt-0">Official press releases and investigative reporting from across Elysium.</p>
+                <a href="documents.html" 
+                   class="inline-flex items-center gap-2 text-sm border border-[#ff00aa] px-5 py-2 text-[#ff00aa] hover:bg-[#ff00aa] hover:text-black transition-all">
+                    BROWSE FULL ARCHIVES →
+                </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="herald-articles">
-                <!-- Articles populated by JavaScript -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="herald-articles">
+                <!-- Populated via JS from data.js (latest 3) -->
             </div>
         </div>
     </section>
@@ -461,6 +464,7 @@
         </div>
     </div>
 
+    <script src="js/data.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

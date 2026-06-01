@@ -376,89 +376,12 @@ function initHoloMap() {
   draw();
 }
 
-// ========== THE HERALD - Press Articles ==========
-const articles = [
-  {
-    id: 0,
-    date: "JUNE 01, 2026",
-    title: "COUNCIL PASSES NEW SURVEILLANCE DIRECTIVE",
-    district: "Aurelian",
-    excerpt: "In a controversial 11-4 vote, the Elysium Council approved expanded monitoring protocols across all public and semi-public spaces.",
-    body: "The new directive grants Aurelian Security forces broader access to scrying sensors and redstone recording networks. Critics argue it further erodes the already limited privacy of citizens, while supporters claim it is necessary to maintain order in the growing megacity. Blackreach representatives walked out of the session in protest."
-  },
-  {
-    id: 1,
-    date: "MAY 28, 2026",
-    title: "BRASSFORGE FACTORY FIRE KILLS 14, INJURES 47",
-    district: "BrassForge",
-    excerpt: "A catastrophic failure in the main smelting wing has left the industrial district reeling. Investigators suspect sabotage.",
-    body: "Emergency crews worked through the night to contain the blaze. The official death toll stands at 14, with dozens more suffering from smoke inhalation and burns. Union leaders are demanding an independent investigation, citing repeated ignored safety complaints from workers in the lower levels."
-  },
-  {
-    id: 2,
-    date: "MAY 25, 2026",
-    title: "TIDEWARD TRADE BOOM: DIAMOND IMPORTS UP 340%",
-    district: "Tideward",
-    excerpt: "Record-breaking shipments from the outer realms have flooded the docks, driving prices down and tensions up.",
-    body: "Merchants in Tideward are celebrating the largest trade surge in three seasons. However, local residents report severe overcrowding, rising crime, and aggressive competition from foreign traders. The Harbor Authority has begun construction on two new piers to handle the volume."
-  },
-  {
-    id: 3,
-    date: "MAY 22, 2026",
-    title: "VERDANCE UNVEILS NEW 'GLOWCROP' VARIETY",
-    district: "Verdance",
-    excerpt: "Agricultural scientists have successfully engineered a wheat variant that glows under moonlight, promising higher yields with less lighting infrastructure.",
-    body: "The breakthrough has been hailed as a major step toward food independence. However, some traditional farmers in Greyhaven worry the new crops will make their methods obsolete. Early samples have already been distributed to several high-end restaurants in Highspire."
-  },
-  {
-    id: 4,
-    date: "MAY 19, 2026",
-    title: "GREYHAVEN MARKET RIOT OVER BREAD PRICES",
-    district: "Greyhaven",
-    excerpt: "Hundreds clashed with security forces after the sudden doubling of staple food prices across the district's markets.",
-    body: "What began as a peaceful protest quickly escalated into violence. Several market stalls were destroyed and multiple arrests were made. Community leaders are calling for price controls and increased subsidies for working families, accusing Aurelian of hoarding grain reserves."
-  },
-  {
-    id: 5,
-    date: "MAY 17, 2026",
-    title: "HIGH SPIRE: MEGA-MERGER BETWEEN TWO GIANTS",
-    district: "Highspire",
-    excerpt: "Aether Dynamics and VoidBank have announced plans to merge, creating what analysts are calling the single most powerful economic entity in the realm.",
-    body: "The proposed merger would control nearly 40% of all diamond-backed loans and major construction contracts. Small business owners across Greyhaven and Tideward have already begun organizing resistance, fearing predatory lending practices and market domination."
-  },
-  {
-    id: 6,
-    date: "MAY 14, 2026",
-    title: "BLACKREACH COLLAPSE: DOZENS MISSING AFTER TUNNEL FAILURE",
-    district: "Blackreach",
-    excerpt: "An aging support structure gave way in the old quarter, trapping residents and workers underground. Rescue efforts are ongoing.",
-    body: "The incident has once again highlighted the dangerous state of infrastructure in Blackreach. Many structures date back to the founding of the original settlement. City officials have promised an emergency inspection of all critical tunnels, though residents remain skeptical after years of neglect."
-  }
-];
-
-function renderHeraldArticles() {
-  const container = document.getElementById('herald-articles');
-  if (!container) return;
-
-  container.innerHTML = articles.map(article => `
-    <div onclick="showArticleModal(${article.id})" 
-         class="group cursor-pointer border border-white/10 bg-[#0a0a0f] p-5 hover:border-[#ff00aa] transition-all duration-300 flex flex-col">
-      <div class="flex justify-between items-center text-[10px] text-[#606080] mb-2">
-        <span>${article.date}</span>
-        <span class="px-2 py-0.5 bg-white/5 group-hover:bg-[#ff00aa]/10 transition-colors">${article.district}</span>
-      </div>
-      <h4 class="font-bold text-lg leading-tight tracking-tight mb-3 group-hover:text-[#ff00aa] transition-colors">${article.title}</h4>
-      <p class="text-sm text-[#9090b0] flex-grow">${article.excerpt}</p>
-      <div class="text-[#ff00aa] text-xs mt-4 group-hover:underline">READ FULL REPORT →</div>
-    </div>
-  `).join('');
-}
-
+// Article modal functions (shared with homepage teaser)
 function showArticleModal(id) {
+  if (typeof articles === 'undefined') return;
   const article = articles.find(a => a.id === id);
   if (!article) return;
 
-  // Create modal on the fly if it doesn't exist
   let modal = document.getElementById('article-modal');
   if (!modal) {
     modal = document.createElement('div');
@@ -472,7 +395,11 @@ function showArticleModal(id) {
          class="max-w-2xl w-full border border-white/20 bg-[#0a0a0f] p-8 text-sm relative">
       <button onclick="hideArticleModal()" class="absolute top-4 right-4 text-[#606080] hover:text-white text-2xl leading-none">&times;</button>
       
-      <div class="text-xs tracking-widest text-[#ff00aa] mb-1">${article.date} • ${article.district.toUpperCase()}</div>
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-xs tracking-widest px-3 py-0.5 border border-white/20">${article.date}</span>
+        <span class="text-xs tracking-widest px-3 py-0.5 bg-white/5">${article.district}</span>
+      </div>
+      
       <h2 class="font-['Orbitron'] text-3xl font-bold tracking-[-1px] mb-6 pr-8">${article.title}</h2>
       
       <div class="prose prose-invert text-[#b0b0d0] max-w-none leading-relaxed">
@@ -556,7 +483,7 @@ function bootElysium() {
   }, 4200);
   
   // Console welcome message
-  console.log('%c[ELYSIUM] Cyberpunk Minecraft Realm website initialized. Welcome, citizen.', 'color:#00f3ff; font-family:monospace');
+  console.log('%c[ELYSIUM] Cyberpunk city website initialized. Welcome, citizen.', 'color:#00f3ff; font-family:monospace');
   console.log('%c[ELYSIUM] Press "?" while focused on the page to jump to the Grid.', 'color:#505070; font-family:monospace');
   
   // Optional: subtle random glitch on one of the district cards every 15s
