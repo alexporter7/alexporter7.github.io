@@ -1,1 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELYSIUM // NEON REALM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&amp;family=Rajdhani:wght@300;400;500;600&amp;family=VT323&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#0a0a0f] text-[#e0e0ff] overflow-x-hidden">
+    <!-- SCANLINE OVERLAY -->
+    <div class="scanlines"></div>
+    
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/90 backdrop-blur-lg border-b border-[#00f3ff]/30">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-gradient-to-br from-[#00f3ff] to-[#ff00aa] flex items-center justify-center">
+                    <span class="font-bold text-black text-xl tracking-[-2px]">E</span>
+                </div>
+                <div>
+                    <span class="font-['Orbitron'] text-2xl font-bold tracking-[3px] text-white">ELYSIUM</span>
+                    <span class="text-[10px] text-[#ff00aa] block -mt-1 tracking-[4px]">EST 2024</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-widest">
+                <a href="#the-city" class="nav-link hover:text-[#00f3ff] transition-colors">THE CITY</a>
+                <a href="#districts" class="nav-link hover:text-[#00f3ff] transition-colors">DISTRICTS</a>
+                <a href="#the-grid" class="nav-link hover:text-[#00f3ff] transition-colors">THE GRID</a>
+                <a href="#lore" class="nav-link hover:text-[#00f3ff] transition-colors">LORE</a>
+                <a href="#access" class="nav-link hover:text-[#00f3ff] transition-colors">ACCESS</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex items-center gap-2 text-xs">
+                    <div class="w-2 h-2 bg-[#39ff14] rounded-full animate-pulse"></div>
+                    <span class="text-[#39ff14] font-mono tracking-widest">47 CITIZENS ONLINE</span>
+                </div>
+                <button onclick="showConnectModal()"
+                        class="px-5 py-2 text-xs font-bold tracking-[2px] border border-[#ff00aa] text-[#ff00aa] hover:bg-[#ff00aa] hover:text-black transition-all duration-200">
+                    CONNECT
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
+    <header class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+        <!-- Background grid + effects -->
+        <div class="absolute inset-0 bg-[radial-gradient(#1f1f2e_0.8px,transparent_1px)] bg-[length:4px_4px]"></div>
+        
+        <!-- Cyberpunk Rain Effect -->
+        <div class="rain"></div>
+        
+        <!-- Neon city silhouette -->
+        <div class="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/70 to-transparent"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-5xl">
+            <!-- Glitch Title -->
+            <div class="relative inline-block mb-2">
+                <h1 class="font-['Orbitron'] text-[92px] md:text-[120px] leading-[0.82] font-black tracking-[-6px] text-white glitch" data-text="ELYSIUM">
+                    ELYSIUM
+                </h1>
+                <div class="absolute inset-0 text-[#00f3ff] opacity-70 blur-[2px] glitch" data-text="ELYSIUM" style="animation-delay: 120ms;">
+                    ELYSIUM
+                </div>
+                <div class="absolute inset-0 text-[#ff00aa] opacity-50 blur-[3px] glitch" data-text="ELYSIUM" style="animation-delay: 300ms;">
+                    ELYSIUM
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-center gap-3 mb-6">
+                <div class="h-px w-12 bg-gradient-to-r from-transparent to-[#00f3ff]"></div>
+                <p class="font-['VT323'] text-2xl text-[#00f3ff] tracking-[6px]">NEON. BLOCKS. NO ESCAPE.</p>
+                <div class="h-px w-12 bg-gradient-to-l from-transparent to-[#00f3ff]"></div>
+            </div>
+            
+            <p class="max-w-md mx-auto text-lg text-[#a0a0c0] mb-10">
+                A cyberpunk megacity rising from the void.<br>
+                The most ambitious Minecraft Realm ever built.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#districts" 
+                   class="group inline-flex items-center justify-center gap-3 px-9 py-4 bg-white text-black font-bold tracking-[2px] text-sm hover:bg-[#00f3ff] transition-all duration-200">
+                    EXPLORE THE GRID
+                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+                <button onclick="document.getElementById('the-grid').scrollIntoView({ behavior: 'smooth' })"
+                        class="inline-flex items-center justify-center gap-3 px-9 py-4 border border-[#00f3ff] text-[#00f3ff] font-bold tracking-[2px] text-sm hover:bg-[#00f3ff]/10 transition-all">
+                    VIEW THE MAP
+                </button>
+            </div>
+            
+            <div class="mt-12 flex justify-center gap-8 text-xs tracking-[3px] text-[#606080]">
+                <div>REALM STATUS: <span class="text-[#39ff14]">ONLINE</span></div>
+                <div>VERSION: 1.21.4</div>
+                <div>PLAYERS: 47/60</div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 flex flex-col items-center text-[10px] tracking-[3px] text-[#00f3ff]/60">
+            <div>SCROLL TO ENTER</div>
+            <div class="h-px w-6 bg-[#00f3ff]/40 mt-2"></div>
+        </div>
+    </header>
+
+    <!-- THE CITY -->
+    <section id="the-city" class="max-w-5xl mx-auto px-6 py-20 border-t border-white/10">
+        <div class="grid md:grid-cols-12 gap-x-12 gap-y-8 items-center">
+            <div class="md:col-span-5">
+                <div class="uppercase text-[#ff00aa] text-xs tracking-[4px] mb-3">EST. 2024 • MINECRAFT REALM</div>
+                <h2 class="font-['Orbitron'] text-6xl font-bold tracking-[-2px] leading-none">THE LAST<br>NEON SANCTUARY</h2>
+            </div>
+            <div class="md:col-span-7 text-[#a0a0c0] text-[15px] leading-relaxed space-y-5">
+                <p>Elysium is not just a Minecraft city. It is a living, breathing cyberpunk megastructure built across multiple dimensions. Towering spires pierce the sky. Holographic advertisements flicker in the rain. The streets below pulse with redstone and ambition.</p>
+                <p>Here, the line between survival and spectacle has been erased. Players don't just build — they live in a neon-drenched world where every block tells a story of power, rebellion, and beauty.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISTRICTS -->
+    <section id="districts" class="bg-[#111118] py-16 border-y border-white/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <div class="text-[#00f3ff] text-xs tracking-[4px]">SECTOR 01 — 06</div>
+                    <h3 class="font-['Orbitron'] text-5xl font-bold tracking-[-1.5px]">DISTRICTS</h3>
+                </div>
+                <p class="text-sm text-[#606080] max-w-[260px] hidden md:block">Six distinct zones. One unified grid. Choose your allegiance.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <!-- District Cards - 7 Districts -->
+                <div onclick="showDistrictModal(0)" class="district-card group cursor-pointer border border-white/10 bg-[#0a0a0f] p-6 hover:border-[#c026ff] transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-[#c026ff] text-xs tracking-widest">SECTOR-01</div>
+                            <div class="font-bold text-2xl tracking-tight group-hover:text-[#c026ff] transition-colors">AURELIAN</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-[#c026ff]">POLITICAL</div>
+                            <div class="font-mono text-xs">LVL 94</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#9090b0] line-clamp-3">The political heart of Elysium. Council chambers, policy halls, and the most powerful figures in the realm. Influence and secrecy rule here.</p>
+                    <div class="mt-6 flex items-center justify-between text-xs">
+                        <span class="px-3 py-1 bg-white/5 group-hover:bg-[#c026ff]/10 transition-colors">SECTOR-01</span>
+                        <span class="text-[#c026ff] group-hover:underline">VIEW DATA →</span>
+                    </div>
+                </div>
+                
+                <div onclick="showDistrictModal(1)" class="district-card group cursor-pointer border border-white/10 bg-[#0a0a0f] p-6 hover:border-[#ffaa00] transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-[#ffaa00] text-xs tracking-widest">SECTOR-02</div>
+                            <div class="font-bold text-2xl tracking-tight group-hover:text-[#ffaa00] transition-colors">BRASSFORGE</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-[#ffaa00]">INDUSTRY</div>
+                            <div class="font-mono text-xs">LVL 71</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#9090b0] line-clamp-3">The industrial engine of Elysium. Massive factories, redstone forges, and heavy manufacturing power the entire realm.</p>
+                    <div class="mt-6 flex items-center justify-between text-xs">
+                        <span class="px-3 py-1 bg-white/5 group-hover:bg-[#ffaa00]/10 transition-colors">SECTOR-02</span>
+                        <span class="text-[#ffaa00] group-hover:underline">VIEW DATA →</span>
+                    </div>
+                </div>
+                
+                <div onclick="showDistrictModal(2)" class="district-card group cursor-pointer border border-white/10 bg-[#0a0a0f] p-6 hover:border-[#00f3ff] transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-[#00f3ff] text-xs tracking-widest">SECTOR-03</div>
+                            <div class="font-bold text-2xl tracking-tight group-hover:text-[#00f3ff] transition-colors">TIDEWARD</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-[#00f3ff]">HARBOR & TRADE</div>
+                            <div class="font-mono text-xs">LVL 68</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#9090b0] line-clamp-3">Elysium's booming port and trade hub. A dense waterfront city of merchants, shipping, and constant commerce.</p>
+                    <div class="mt-6 flex items-center justify-between text-xs">
+                        <span class="px-3 py-1 bg-white/5 group-hover:bg-[#00f3ff]/10 transition-colors">SECTOR-03</span>
+                        <span class="text-[#00f3ff] group-hover:underline">VIEW DATA →</span>
+                    </div>
+                </div>
+                
+                <div onclick="showDistrictModal(3)" class="district-card group cursor-pointer border border-white/10 bg-[#0a0a0f] p-6 hover:border-[#39ff14] transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-[#39ff14] text-xs tracking-widest">SECTOR-04</div>
+                            <div class="font-bold text-2xl tracking-tight group-hover:text-[#39ff14] transition-colors">VERDANCE</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-[#39ff14]">AGRICULTURE</div>
+                            <div class="font-mono text-xs">LVL 62</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#9090b0] line-clamp-3">The agricultural heart of the realm. Advanced hydroponic farms and vertical towers keep the entire city fed.</p>
+                    <div class="mt-6 flex items-center justify-between text-xs">
+                        <span class="px-3 py-1 bg-white/5 group-hover:bg-[#39ff14]/10 transition-colors">SECTOR-04</span>
+                        <span class="text-[#39ff14] group-hover:underline">VIEW DATA →</span>
+                    </div>
+                </div>
+                
+                <div onclick="showDistrictModal(4)" class="district-card group cursor-pointer border border-white/10 bg-[#0a0a0f] p-6 hover:border-[#708090] transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-[#708090] text-xs tracking-widest">SECTOR-05</div>
+                            <div class="font-bold text-2xl tracking-tight group-hover:text-[#a0a0c0] transition-colors">GREYHAVEN</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-[#708090]">WORKING CLASS</div>
+                            <div class="font-mono text-xs">LVL 55</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#9090b0] line-clamp-3">The dense working-class residential and commercial heart. Small businesses, markets, and everyday life thrive here.</p>
+                    <div class="mt-6 flex items-center justify-between text-xs">
+                        <span class="px-3 py-1 bg-white/5 group-hover:bg-[#708090]/10 transition-colors">SECTOR-05</span>
+                        <span class="text-[#a0a0c0] group-hover:underline">VIEW DATA →</span>
+                    </div>
+                </div>
+                
+                <div onclick="showDistrictModal(5)" class="district-card group cursor-pointer border border-white/10 bg-[#0a0a0f] p-6 hover:border-[#ff00aa] transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-[#ff00aa] text-xs tracking-widest">SECTOR-06</div>
+                            <div class="font-bold text-2xl tracking-tight group-hover:text-[#ff00aa] transition-colors">HIGH SPIRE</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-[#ff00aa]">CORPORATE</div>
+                            <div class="font-mono text-xs">LVL 89</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#9090b0] line-clamp-3">The gleaming financial and corporate district. Towering skyscrapers, major banks, and the wealthiest residents.</p>
+                    <div class="mt-6 flex items-center justify-between text-xs">
+                        <span class="px-3 py-1 bg-white/5 group-hover:bg-[#ff00aa]/10 transition-colors">SECTOR-06</span>
+                        <span class="text-[#ff00aa] group-hover:underline">VIEW DATA →</span>
+                    </div>
+                </div>
+                
+                <div onclick="showDistrictModal(6)" class="district-card group cursor-pointer border border-white/10 bg-[#0a0a0f] p-6 hover:border-[#aa00ff] transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-[#aa00ff] text-xs tracking-widest">SECTOR-07</div>
+                            <div class="font-bold text-2xl tracking-tight group-hover:text-[#aa00ff] transition-colors">BLACKREACH</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-[#aa00ff]">UNDERCITY</div>
+                            <div class="font-mono text-xs">LVL 41</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#9090b0] line-clamp-3">The old, decaying underground city. Aging infrastructure and poorer residents live among the ruins of the original settlement.</p>
+                    <div class="mt-6 flex items-center justify-between text-xs">
+                        <span class="px-3 py-1 bg-white/5 group-hover:bg-[#aa00ff]/10 transition-colors">SECTOR-07</span>
+                        <span class="text-[#aa00ff] group-hover:underline">VIEW DATA →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE GRID / HOLO MAP -->
+    <section id="the-grid" class="max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <div class="text-[#ff00aa] text-xs tracking-[4px]">REAL-TIME DATAFEED</div>
+            <h3 class="font-['Orbitron'] text-5xl font-bold tracking-[-1px]">THE GRID</h3>
+            <p class="text-[#707090] mt-3">Interactive holographic map of Elysium • Last synced 47 seconds ago</p>
+        </div>
+        
+        <!-- Holographic Map -->
+        <div class="relative mx-auto max-w-[820px] aspect-square border border-[#00f3ff]/30 bg-[#050508] p-4 rounded" id="holo-map-container">
+            <canvas id="holo-map" class="w-full h-full rounded cursor-crosshair"></canvas>
+            
+            <!-- Map overlay info -->
+            <div class="absolute top-4 left-4 bg-black/70 px-4 py-2 text-xs font-mono border border-white/10">
+                <div>COORDINATES: <span class="text-[#39ff14]">X: 1284 Z: -472</span></div>
+                <div>ACTIVE NODES: <span class="text-[#00f3ff]">19</span></div>
+            </div>
+            
+            <div class="absolute bottom-4 right-4 text-right text-[10px] text-[#606080] font-mono">
+                <div>ZOOM: 1.0x</div>
+                <div>STATUS: <span class="text-[#39ff14]">STABLE</span></div>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-3 mt-6 text-xs">
+            <div class="px-4 py-1.5 bg-white/5 border border-white/10 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-[#c026ff]"></span>
+                <span>POLITICAL</span>
+            </div>
+            <div class="px-4 py-1.5 bg-white/5 border border-white/10 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-[#ffaa00]"></span>
+                <span>INDUSTRY</span>
+            </div>
+            <div class="px-4 py-1.5 bg-white/5 border border-white/10 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-[#00f3ff]"></span>
+                <span>HARBOR</span>
+            </div>
+            <div class="px-4 py-1.5 bg-white/5 border border-white/10 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-[#39ff14]"></span>
+                <span>AGRICULTURE</span>
+            </div>
+            <div class="px-4 py-1.5 bg-white/5 border border-white/10 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-[#708090]"></span>
+                <span>WORKING CLASS</span>
+            </div>
+            <div class="px-4 py-1.5 bg-white/5 border border-white/10 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-[#ff00aa]"></span>
+                <span>CORPORATE</span>
+            </div>
+            <div class="px-4 py-1.5 bg-white/5 border border-white/10 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-[#aa00ff]"></span>
+                <span>UNDERCITY</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE HERALD - Press Releases & Newspapers -->
+    <section id="herald" class="bg-[#0f0f16] border-y border-white/10 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10">
+                <div>
+                    <div class="text-[#ff00aa] text-xs tracking-[4px]">PUBLIC RECORD • EST 2024</div>
+                    <h3 class="font-['Orbitron'] text-5xl font-bold tracking-[-1px]">THE HERALD</h3>
+                </div>
+                <p class="text-sm text-[#707090] max-w-md mt-2 md:mt-0">Official press releases and investigative reporting from across Elysium.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="herald-articles">
+                <!-- Articles populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- LORE -->
+    <section id="lore" class="bg-[#111118] border-y border-white/10 py-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="uppercase tracking-[4px] text-xs text-[#ff00aa] mb-2">ARCHIVE ENTRY 047</div>
+            <h4 class="font-['Orbitron'] text-4xl font-bold tracking-[-1px] mb-8">THE FALL OF THE OLD REALM</h4>
+            
+            <div class="prose prose-invert text-[#b0b0d0] max-w-none text-[15px] leading-relaxed">
+                <p>In the beginning, the Realm was simple. A few friends building houses in the woods. Then came the first skyscrapers. Then the redstone revolution. Then the corporations.</p>
+                <p>Now, Elysium stands as the final evolution — a city where the sky is artificial and the rain is coded. The old world is gone. Only the grid remains.</p>
+                <p class="text-[#00f3ff] font-medium">“They said we couldn’t build paradise in Minecraft. We didn’t build paradise. We built something better. We built Elysium.”</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCESS PROTOCOL -->
+    <section id="access" class="max-w-4xl mx-auto px-6 py-20">
+        <div class="text-center mb-10">
+            <div class="text-xs tracking-[4px] text-[#39ff14]">SECURE TRANSMISSION</div>
+            <h3 class="font-['Orbitron'] text-5xl font-bold tracking-[-1px]">ACCESS PROTOCOL</h3>
+        </div>
+        
+        <div class="terminal border border-[#39ff14]/40 bg-black p-8 font-mono text-sm text-[#39ff14]">
+            <div class="text-[#39ff14]/60 mb-4">root@elysium-realm ~ %</div>
+            <div class="space-y-1">
+                <div><span class="text-white">REALM CODE:</span> <span class="font-bold">ELYSIUM-47X9-K4P2</span></div>
+                <div><span class="text-white">VERSION:</span> 1.21.4 • HARDCORE ECONOMY ENABLED</div>
+                <div><span class="text-white">DISCORD:</span> <a href="#" class="underline hover:text-white">discord.gg/elysium-realm</a></div>
+                <div class="pt-3 text-[#39ff14]/70">— RULES —</div>
+                <div class="text-xs leading-relaxed text-[#39ff14]/80 pl-4">
+                    • No griefing outside The Firewall<br>
+                    • Respect all builds. This city is art.<br>
+                    • PvP only in Sector-06 unless challenged<br>
+                    • No lag machines. We will find you.
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <button onclick="showConnectModal()" 
+                    class="px-12 py-4 text-sm uppercase tracking-[3px] border-2 border-[#39ff14] text-[#39ff14] hover:bg-[#39ff14] hover:text-black font-bold transition-all">
+                REQUEST REALM INVITE
+            </button>
+            <p class="text-[10px] text-[#606080] mt-3 tracking-widest">APPLICATIONS REVIEWED BY THE COUNCIL</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-8 text-xs text-[#505070]">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>© 2026 ELYSIUM REALM — ALL RIGHTS EXPLOITED</div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-white">SYSTEM LOGS</a>
+                <a href="#" class="hover:text-white">PLAYER ARCHIVE</a>
+                <a href="#" class="hover:text-white">CORPORATE MANIFESTO</a>
+            </div>
+            <div class="font-mono">v4.7.3 // NEON PROTOCOL</div>
+        </div>
+    </footer>
+
+    <!-- DISTRICT MODAL -->
+    <div id="district-modal" onclick="if (event.target.id === 'district-modal') hideDistrictModal()" 
+         class="hidden fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="max-w-2xl w-full border border-white/20 bg-[#0a0a0f] p-8 text-sm relative">
+            
+            <button onclick="hideDistrictModal()" class="absolute top-4 right-4 text-[#606080] hover:text-white text-2xl leading-none">&times;</button>
+            
+            <div id="modal-header" class="mb-6"></div>
+            <div id="modal-body" class="text-[#a0a0c0] leading-relaxed space-y-4"></div>
+            
+            <div class="mt-8 pt-6 border-t border-white/10 flex justify-between text-xs">
+                <div>
+                    <div class="text-[#606080]">POPULATION</div>
+                    <div id="modal-pop" class="font-mono text-lg text-white"></div>
+                </div>
+                <div>
+                    <div class="text-[#606080]">PROPERTY VALUE</div>
+                    <div id="modal-value" class="font-mono text-lg text-[#00f3ff]"></div>
+                </div>
+                <div>
+                    <div class="text-[#606080]">CRIME INDEX</div>
+                    <div id="modal-crime" class="font-mono text-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONNECT MODAL -->
+    <div id="connect-modal" onclick="if (event.target.id === 'connect-modal') hideConnectModal()" 
+         class="hidden fixed inset-0 z-[110] bg-black/90 flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="max-w-md w-full border border-[#00f3ff]/40 bg-[#050508] p-8">
+            <div class="font-['Orbitron'] text-3xl tracking-[-1px] mb-1">CONNECT TO ELYSIUM</div>
+            <div class="text-[#00f3ff] text-xs tracking-[2px] mb-6">REQUEST ACCESS TO THE GRID</div>
+            
+            <form onsubmit="submitConnectForm(event)" class="space-y-4">
+                <div>
+                    <label class="text-xs text-[#707090]">MINECRAFT USERNAME</label>
+                    <input type="text" id="mc-username" required 
+                           class="w-full bg-black border border-white/20 focus:border-[#00f3ff] px-4 py-3 text-sm font-mono outline-none">
+                </div>
+                <div>
+                    <label class="text-xs text-[#707090]">DISCORD TAG</label>
+                    <input type="text" id="discord-tag" placeholder="username#0000" required
+                           class="w-full bg-black border border-white/20 focus:border-[#00f3ff] px-4 py-3 text-sm font-mono outline-none">
+                </div>
+                <div>
+                    <label class="text-xs text-[#707090]">WHY DO YOU WANT TO JOIN?</label>
+                    <textarea id="reason" rows="3" required
+                              class="w-full bg-black border border-white/20 focus:border-[#00f3ff] px-4 py-3 text-sm outline-none"></textarea>
+                </div>
+                
+                <button type="submit"
+                        class="w-full py-4 mt-2 bg-gradient-to-r from-[#00f3ff] to-[#ff00aa] text-black font-bold tracking-widest text-sm hover:brightness-110 transition-all">
+                    SUBMIT APPLICATION TO THE COUNCIL
+                </button>
+            </form>
+            
+            <div class="text-center text-[10px] text-[#505070] mt-4">Applications typically reviewed within 48 hours</div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
